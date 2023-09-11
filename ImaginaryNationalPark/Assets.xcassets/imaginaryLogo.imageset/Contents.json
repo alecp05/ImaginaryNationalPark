@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "imaginary_national_park.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
