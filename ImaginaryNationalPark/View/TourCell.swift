@@ -23,7 +23,7 @@ class TourCell: UITableViewCell {
     var thumbnail: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -34,11 +34,13 @@ class TourCell: UITableViewCell {
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         return label
     }()
+    
     var priceLabel: UILabel  = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         return label
     }()
+    
     var descriptionLabel: UILabel = UILabel()
     var availableLabel: UILabel = UILabel()
 
@@ -69,7 +71,7 @@ class TourCell: UITableViewCell {
     }
     
     // /////////////////////////////////////////////////////////////////////////
-    // MARK: - BookCell
+    // MARK: - TourCell
     // /////////////////////////////////////////////////////////////////////////
     
     func makeConstraints() {
@@ -113,7 +115,5 @@ class TourCell: UITableViewCell {
             make.trailing.equalToSuperview()
             make.bottom.lessThanOrEqualToSuperview().inset(10)
         }
-        
-
     }
 }
