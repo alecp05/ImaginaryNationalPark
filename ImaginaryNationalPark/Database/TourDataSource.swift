@@ -14,23 +14,17 @@ import UIKit
 class TourDataSource: UITableViewDiffableDataSource<Section, Tour> {
     
     // /////////////////////////////////////////////////////////////////////////
-    // MARK: - Properties
-    
-    private let repository: ApiRepository = ApiRepository()
-    
-    
-    // /////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     
-    func update(requestType: Request) {
+    func update(requestType: Request, repository: ApiRepository) {
         
-        self.repository.getTours(type: requestType, completed: {
+        repository.getTours(type: requestType, completed: {
             
             var newSnapshot = NSDiffableDataSourceSnapshot<Section, Tour>()
             
             newSnapshot.appendSections(Section.allCases)
             
-            newSnapshot.appendItems(self.repository.allTours, toSection: .main)
+            newSnapshot.appendItems(repository.allTours, toSection: .main)
             
             self.apply(newSnapshot, animatingDifferences: false)
         })
