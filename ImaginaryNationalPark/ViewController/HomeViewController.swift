@@ -12,18 +12,16 @@ import SnapKit
 // MARK: - HomeViewController -
 // /////////////////////////////////////////////////////////////////////////
 
-class HomeViewController: UIViewController {
-
+class HomeViewController: UIViewController, UITableViewDelegate {
+    
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
     
     private let imageLogo: UIImageView = {
         let imageView = UIImageView()
-        
         imageView.image = UIImage(named: "imaginaryLogo")
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        
         return imageView
     }()
     
@@ -45,6 +43,17 @@ class HomeViewController: UIViewController {
         return button
     }()
     
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.sectionHeaderTopPadding = 0
+        tableView.estimatedRowHeight = 50
+        tableView.rowHeight = UITableView.automaticDimension
+        return tableView
+    }()
+    
+    private var dataSource: TourDataSource!
+    
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - HomeViewController
     // /////////////////////////////////////////////////////////////////////////
@@ -54,11 +63,19 @@ class HomeViewController: UIViewController {
         
         self.view.backgroundColor = .white
         self.title = "Imaginary"
-    
+        
+        // navigation
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: self.imageLogo)
         
+        self.tableView.register(TourCell.self, forCellReuseIdentifier: TourCell.reuseIdentifier)
+        
+        self.configureDataSource()
+        self.dataSource.update(requestType: .allTours)
+        
+        // subviews
         self.view.addSubview(self.allTourButton)
         self.view.addSubview(self.topFiveButton)
+        self.view.addSubview(self.tableView)
         
         self.makeConstraints()
     }
@@ -82,6 +99,11 @@ class HomeViewController: UIViewController {
             make.trailing.equalToSuperview()
             make.height.equalTo(50)
         }
+        
+        self.tableView.snp.makeConstraints { make in
+            make.top.equalTo(self.allTourButton.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     // /////////////////////////////////////////////////////////////////////////
@@ -89,13 +111,31 @@ class HomeViewController: UIViewController {
     
     @objc
     func clickedAllTourButton() {
-        print("allTour")
+        self.dataSource.update(requestType: .allTours)
     }
     
     @objc
     func clickedTopFiveButton() {
-        print("top5")
+        self.dataSource.update(requestType: .topFive)
     }
-
+    
+    // /////////////////////////////////////////////////////////////////////////
+    // MARK: - DiffableDataSource
+    // /////////////////////////////////////////////////////////////////////////
+    
+    
+    func configureDataSource() {
+        self.dataSource = TourDataSource(tableView: self.tableView) { tableView, indexPath, tour -> UITableViewCell in
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TourCell.reuseIdentifier, for: indexPath) as? TourCell
+            else { fatalError("Couldn't create TourCell") }
+            
+            cell.backgroundColor = .gray
+            cell.titleLabel.text = tour.title
+            
+            return cell
+        }
+    }
+    
 }
 
