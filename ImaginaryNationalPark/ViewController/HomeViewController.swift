@@ -28,18 +28,18 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     private lazy var allTourButton: UIButton = {
         let button = UIButton()
         button.setTitle("ALL", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(clickedAllTourButton), for: .touchUpInside)
-        button.backgroundColor = .green
+        button.backgroundColor = .brown
         return button
     }()
     
     private lazy var topFiveButton: UIButton = {
         let button = UIButton()
         button.setTitle("TOP 5", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(clickedTopFiveButton), for: .touchUpInside)
-        button.backgroundColor = .yellow
+        button.backgroundColor = .brown
         return button
     }()
     
@@ -47,12 +47,19 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.sectionHeaderTopPadding = 0
-        tableView.estimatedRowHeight = 50
+        tableView.estimatedRowHeight = 120
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
     
+    // TODO: no forcing
     private var dataSource: TourDataSource!
+    
+    private var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return formatter
+    }()
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - HomeViewController
@@ -112,11 +119,13 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @objc
     func clickedAllTourButton() {
         self.dataSource.update(requestType: .allTours)
+        self.tableView.reloadData()
     }
     
     @objc
     func clickedTopFiveButton() {
         self.dataSource.update(requestType: .topFive)
+        self.tableView.reloadData()
     }
     
     // /////////////////////////////////////////////////////////////////////////
@@ -130,8 +139,30 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TourCell.reuseIdentifier, for: indexPath) as? TourCell
             else { fatalError("Couldn't create TourCell") }
             
-            cell.backgroundColor = .gray
+            // image
+            // TODO: check if this is okay
+            if let url = URL(string: tour.thumbnail) {
+                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                    guard let imageData = data else { return }
+                    DispatchQueue.main.async {
+                        cell.thumbnail.image = UIImage(data: imageData)
+                    }
+                }.resume()
+            }
+            
             cell.titleLabel.text = tour.title
+            cell.priceLabel.text = "PRICE: \(tour.price)€"
+            cell.descriptionLabel.text = tour.shortDescription
+            
+            // end Date
+            if let date = self.dateFormatter.date(from: tour.endDate) {
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMM d, h:mm a"
+                let result = formatter.string(from: date)
+                
+                cell.availableLabel.text = result
+            }
             
             return cell
         }
