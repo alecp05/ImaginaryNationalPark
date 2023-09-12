@@ -18,15 +18,16 @@ class ApiRepository {
     // MARK: - Properties
     
     var allTours: [Tour] = [Tour]()
-
+    var detailTour: Tour?
+    
+    private let headers: HTTPHeaders = [.accept("application/json")]
+    
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     
     func getTours(type: Request,completed: @escaping () -> ()) {
         
-        let headers: HTTPHeaders = [.accept("application/json")]
-        
-        AF.request(type.value, headers: headers)
+        AF.request(type.value, headers: self.headers)
             .responseDecodable(of: [Tour].self) { response in
                 
                 switch response.result {
@@ -41,6 +42,22 @@ class ApiRepository {
                     }
                     
                     completed()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    func getTourWithID(id: Int, completed: @escaping (Tour) -> ()) {
+        
+        AF.request(Request.tourDetail(id).value, headers: self.headers)
+            .responseDecodable(of: Tour.self) { response in
+                
+                switch response.result {
+                case .success(let tour):
+                
+                    self.detailTour = tour
+                    completed(tour)
                 case .failure(let error):
                     print(error)
                 }
