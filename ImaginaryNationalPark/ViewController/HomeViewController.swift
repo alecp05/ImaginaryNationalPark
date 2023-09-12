@@ -27,6 +27,24 @@ class HomeViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var allTourButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("ALL", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.addTarget(self, action: #selector(clickedAllTourButton), for: .touchUpInside)
+        button.backgroundColor = .green
+        return button
+    }()
+    
+    private lazy var topFiveButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("TOP 5", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.addTarget(self, action: #selector(clickedTopFiveButton), for: .touchUpInside)
+        button.backgroundColor = .yellow
+        return button
+    }()
+    
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - HomeViewController
     // /////////////////////////////////////////////////////////////////////////
@@ -39,6 +57,9 @@ class HomeViewController: UIViewController {
     
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: self.imageLogo)
         
+        self.view.addSubview(self.allTourButton)
+        self.view.addSubview(self.topFiveButton)
+        
         self.makeConstraints()
     }
     
@@ -47,10 +68,34 @@ class HomeViewController: UIViewController {
         self.imageLogo.snp.makeConstraints { make in
             make.size.equalTo(40)
         }
+        
+        self.allTourButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.leading.equalToSuperview()
+            make.height.equalTo(50)
+            make.width.equalToSuperview().dividedBy(2)
+        }
+        
+        self.topFiveButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.leading.equalTo(self.allTourButton.snp.trailing)
+            make.trailing.equalToSuperview()
+            make.height.equalTo(50)
+        }
     }
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
+    
+    @objc
+    func clickedAllTourButton() {
+        print("allTour")
+    }
+    
+    @objc
+    func clickedTopFiveButton() {
+        print("top5")
+    }
 
 }
 
