@@ -31,6 +31,8 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(clickedAllTourButton), for: .touchUpInside)
         button.backgroundColor = .brown
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.white.cgColor
         return button
     }()
     
@@ -40,6 +42,8 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(clickedTopFiveButton), for: .touchUpInside)
         button.backgroundColor = .brown
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.white.cgColor
         return button
     }()
     
@@ -52,14 +56,15 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         return tableView
     }()
     
-    // TODO: no forcing
-    private var dataSource: TourDataSource!
+    private var dataSource: TourDataSource?
     
     private var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         return formatter
     }()
+    
+    private let repository: ApiRepository = ApiRepository()
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - HomeViewController
@@ -74,10 +79,11 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         // navigation
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: self.imageLogo)
         
+        // tableView
         self.tableView.register(TourCell.self, forCellReuseIdentifier: TourCell.reuseIdentifier)
-        
+        self.tableView.delegate = self
         self.configureDataSource()
-        self.dataSource.update(requestType: .allTours)
+        self.dataSource?.update(requestType: .allTours, repository: self.repository)
         
         // subviews
         self.view.addSubview(self.allTourButton)
@@ -90,7 +96,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     func makeConstraints() {
         
         self.imageLogo.snp.makeConstraints { make in
-            make.size.equalTo(40)
+            make.size.equalTo(30)
         }
         
         self.allTourButton.snp.makeConstraints { make in
@@ -118,20 +124,19 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     @objc
     func clickedAllTourButton() {
-        self.dataSource.update(requestType: .allTours)
+        self.dataSource?.update(requestType: .allTours, repository: self.repository)
         self.tableView.reloadData()
     }
     
     @objc
     func clickedTopFiveButton() {
-        self.dataSource.update(requestType: .topFive)
+        self.dataSource?.update(requestType: .topFive, repository: self.repository)
         self.tableView.reloadData()
     }
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - DiffableDataSource
     // /////////////////////////////////////////////////////////////////////////
-    
     
     func configureDataSource() {
         self.dataSource = TourDataSource(tableView: self.tableView) { tableView, indexPath, tour -> UITableViewCell in
@@ -140,7 +145,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             else { fatalError("Couldn't create TourCell") }
             
             // image
-            // TODO: check if this is okay
             if let url = URL(string: tour.thumbnail) {
                 URLSession.shared.dataTask(with: url) { (data, response, error) in
                     guard let imageData = data else { return }
@@ -155,16 +159,29 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             cell.descriptionLabel.text = tour.shortDescription
             
             // end Date
-            if let date = self.dateFormatter.date(from: tour.endDate) {
-                
-                let formatter = DateFormatter()
-                formatter.dateFormat = "MMM d, h:mm a"
-                let result = formatter.string(from: date)
-                
-                cell.availableLabel.text = result
+            if let date = tour.formattedDate(using: self.dateFormatter, date: tour.endDate) {
+                cell.availableLabel.text = date
             }
             
+            cell.selectionStyle = .none
+            
             return cell
+        }
+    }
+    
+    // /////////////////////////////////////////////////////////////////////////
+    // MARK: - UITableViewDelegate
+    // /////////////////////////////////////////////////////////////////////////
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let tour = self.dataSource?.itemIdentifier(for: indexPath) {
+            self.repository.getTourWithID(id: tour.id, completed: { tour in
+
+                let controller = DetailViewController(tour: tour)
+
+                self.navigationController?.pushViewController(controller, animated: true)
+            })
         }
     }
     
