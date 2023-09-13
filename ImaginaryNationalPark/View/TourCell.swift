@@ -18,7 +18,8 @@ class TourCell: UITableViewCell {
     
     static let reuseIdentifier = String(describing: TourCell.self)
     
-    var containerView: UIView = UIView()
+    private var containerView: UIView = UIView()
+    private var informationContainerView: UIView = UIView()
     
     var thumbnail: UIImageView = {
         let imageView = UIImageView()
@@ -26,8 +27,6 @@ class TourCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-    
-    var informationContainerView: UIView = UIView()
     
     var titleLabel: UILabel  = {
         let label = UILabel()
@@ -58,7 +57,6 @@ class TourCell: UITableViewCell {
         
         self.informationContainerView.addSubview(self.titleLabel)
         self.informationContainerView.addSubview(self.descriptionLabel)
-        
         self.informationContainerView.addSubview(self.availableLabel)
         
         self.containerView.backgroundColor = .brown.withAlphaComponent(0.5)

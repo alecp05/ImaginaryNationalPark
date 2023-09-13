@@ -47,12 +47,14 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         return button
     }()
     
-    private let tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.sectionHeaderTopPadding = 0
         tableView.estimatedRowHeight = 120
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(TourCell.self, forCellReuseIdentifier: TourCell.reuseIdentifier)
+        tableView.delegate = self
         return tableView
     }()
     
@@ -80,8 +82,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: self.imageLogo)
         
         // tableView
-        self.tableView.register(TourCell.self, forCellReuseIdentifier: TourCell.reuseIdentifier)
-        self.tableView.delegate = self
         self.configureDataSource()
         self.dataSource?.update(requestType: .allTours, repository: self.repository)
         
@@ -115,7 +115,9 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         
         self.tableView.snp.makeConstraints { make in
             make.top.equalTo(self.allTourButton.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
+            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
+            make.bottom.equalToSuperview()
         }
     }
     
