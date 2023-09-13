@@ -9,6 +9,14 @@ import UIKit
 import SnapKit
 
 // /////////////////////////////////////////////////////////////////////////
+// MARK: - HomeViewController Delegate -
+// /////////////////////////////////////////////////////////////////////////
+
+protocol HomeViewControllerDelegate {
+    func didSelectTour(tour: Tour)
+}
+
+// /////////////////////////////////////////////////////////////////////////
 // MARK: - HomeViewController -
 // /////////////////////////////////////////////////////////////////////////
 
@@ -67,6 +75,8 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }()
     
     private let repository: ApiRepository = ApiRepository()
+    
+    var delegate: HomeViewControllerDelegate! = nil
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - HomeViewController
@@ -178,14 +188,17 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let tour = self.dataSource?.itemIdentifier(for: indexPath) {
+            
             self.repository.getTourWithID(id: tour.id, completed: { tour in
-
-                let controller = DetailViewController(tour: tour, repository: self.repository)
-
-                self.navigationController?.pushViewController(controller, animated: true)
+                
+                if UIScreen.main.bounds.width > UIScreen.main.bounds.height {
+                    self.delegate.didSelectTour(tour: tour)
+                } else {
+                    let controller = DetailViewController(tour: tour, repository: self.repository)
+                    self.navigationController?.pushViewController(controller, animated: true)
+                }
             })
         }
     }
-    
 }
 
