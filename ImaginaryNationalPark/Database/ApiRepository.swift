@@ -25,7 +25,7 @@ class ApiRepository {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     
-    func getTours(type: Request,completed: @escaping () -> ()) {
+    func getTours(type: Request, completed: @escaping () -> ()) {
         
         AF.request(type.value, headers: self.headers)
             .responseDecodable(of: [Tour].self) { response in
@@ -58,6 +58,19 @@ class ApiRepository {
                 
                     self.detailTour = tour
                     completed(tour)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    func getContactInfo(completed: @escaping (Contact) -> ()) {
+        AF.request(Request.contact.value, headers: self.headers)
+            .responseDecodable(of: Contact.self) { response in
+                
+                switch response.result {
+                case .success(let contact):
+                    completed(contact)
                 case .failure(let error):
                     print(error)
                 }
