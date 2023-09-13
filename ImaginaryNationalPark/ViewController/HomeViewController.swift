@@ -178,7 +178,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         if let tour = self.dataSource?.itemIdentifier(for: indexPath) {
             self.repository.getTourWithID(id: tour.id, completed: { tour in
 
-                let controller = DetailViewController(tour: tour)
+                let controller = DetailViewController(tour: tour, repository: self.repository)
 
                 self.navigationController?.pushViewController(controller, animated: true)
             })
