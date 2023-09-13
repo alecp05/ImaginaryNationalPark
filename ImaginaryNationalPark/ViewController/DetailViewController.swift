@@ -53,8 +53,8 @@ class DetailViewController: UIViewController {
     private lazy var callButton: UIButton = {
         let button = UIButton()
         button.setTitle("CALL TO BOOK", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.backgroundColor = .gray.withAlphaComponent(0.5)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .brown.withAlphaComponent(0.5)
         button.addTarget(self, action: #selector(clickedAllTourButton), for: .touchUpInside)
         return button
     }()
