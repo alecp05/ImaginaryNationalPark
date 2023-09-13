@@ -12,10 +12,19 @@ import SnapKit
 // MARK: - DetailViewController -
 // /////////////////////////////////////////////////////////////////////////
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, HomeViewControllerDelegate {
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
+    
+    private var logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "imaginaryLogo")
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.isHidden = true
+        return imageView
+    }()
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -65,15 +74,14 @@ class DetailViewController: UIViewController {
         return formatter
     }()
     
-    
-    var tour: Tour
+    var tour: Tour?
     var repository: ApiRepository
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Life Cycle
     
     
-    init(tour: Tour, repository: ApiRepository) {
+    init(tour: Tour?, repository: ApiRepository) {
         self.tour = tour
         self.repository = repository
         
@@ -92,25 +100,36 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
-        self.title = self.tour.title
-        self.titleLabel.text = self.tour.title
-        self.descriptionLabel.text = self.tour.description
         
-        if let startDate = self.tour.formattedDate(using: self.dateFormatter, date: self.tour.startDate),
-           let endDate = (self.tour.formattedDate(using: self.dateFormatter, date: self.tour.endDate)) {
+        if let tour = self.tour {
+            self.title = tour.title
+            self.titleLabel.text = tour.title
+            self.descriptionLabel.text = tour.description
             
-            self.availableLabel.text = "\(startDate) - \(endDate)"
+            if let startDate = tour.formattedDate(using: self.dateFormatter, date: tour.startDate),
+               let endDate = (tour.formattedDate(using: self.dateFormatter, date: tour.endDate)) {
+                
+                self.availableLabel.text = "\(startDate) - \(endDate)"
+            }
+            
+            if let url = URL(string: tour.thumbnail) {
+                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                    guard let imageData = data else { return }
+                    DispatchQueue.main.async {
+                        
+                        self.imageView.image = UIImage(data: imageData)
+                    }
+                }.resume()
+            }
+        } else {
+            
+            self.logoImageView.isHidden = false
+            self.bookableLabel.isHidden = true
+            self.callButton.isHidden = true
         }
         
-        if let url = URL(string: self.tour.thumbnail) {
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let imageData = data else { return }
-                DispatchQueue.main.async {
-                    
-                    self.imageView.image = UIImage(data: imageData)
-                }
-            }.resume()
-        }
+        // logo when its empty
+        self.view.addSubview(self.logoImageView)
         
         // subviews
         self.view.addSubview(self.imageView)
@@ -129,8 +148,14 @@ class DetailViewController: UIViewController {
     
     func makeConstraints() {
         
+        self.logoImageView.snp.remakeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
         // check if manually because on launch orientation is unknown
-        if UIScreen.main.bounds.width < UIScreen.main.bounds.height{
+        // portrait
+        if UIScreen.main.bounds.width < UIScreen.main.bounds.height {
             
             self.imageView.snp.remakeConstraints { make in
                 make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
@@ -140,7 +165,7 @@ class DetailViewController: UIViewController {
         } else {
             
             self.imageView.snp.remakeConstraints { make in
-                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(16)
                 make.centerX.equalToSuperview()
                 make.height.equalTo(100)
                 make.width.equalTo(200)
@@ -210,7 +235,7 @@ class DetailViewController: UIViewController {
         
         if UIDevice.current.orientation.isLandscape {
             self.imageView.snp.remakeConstraints { make in
-                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(16)
                 make.centerX.equalToSuperview()
                 make.height.equalTo(100)
                 make.width.equalTo(200)
@@ -223,5 +248,37 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    
+    // /////////////////////////////////////////////////////////////////////////
+    // MARK: - HomeViewControllerDelegate -
+    // /////////////////////////////////////////////////////////////////////////
+    
+    func didSelectTour(tour: Tour) {
+        
+        // components hidden
+        self.logoImageView.isHidden = true
+        self.bookableLabel.isHidden = false
+        self.callButton.isHidden = false
+        
+        self.titleLabel.text = tour.title
+        self.descriptionLabel.text = tour.description
+        
+        if let startDate = tour.formattedDate(using: self.dateFormatter, date: tour.startDate),
+           let endDate = (tour.formattedDate(using: self.dateFormatter, date: tour.endDate)) {
+            
+            self.availableLabel.text = "\(startDate) - \(endDate)"
+        }
+        
+        if let url = URL(string: tour.thumbnail) {
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                guard let imageData = data else { return }
+                DispatchQueue.main.async {
+                    
+                    self.imageView.image = UIImage(data: imageData)
+                }
+            }.resume()
+        }
+    }
+    
 }
 
