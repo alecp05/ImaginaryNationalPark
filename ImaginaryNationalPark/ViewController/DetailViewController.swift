@@ -32,6 +32,8 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    private let scrollView: UIScrollView = UIScrollView()
+    
     private var descriptionLabel:  UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
@@ -57,7 +59,6 @@ class DetailViewController: UIViewController {
         return button
     }()
     
-    
     private var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -66,13 +67,15 @@ class DetailViewController: UIViewController {
     
     
     var tour: Tour
+    var repository: ApiRepository
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Life Cycle
     
     
-    init(tour: Tour) {
+    init(tour: Tour, repository: ApiRepository) {
         self.tour = tour
+        self.repository = repository
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -108,14 +111,17 @@ class DetailViewController: UIViewController {
                 }
             }.resume()
         }
-
+        
         // subviews
         self.view.addSubview(self.imageView)
         self.view.addSubview(self.containerView)
+        
         self.containerView.addSubview(self.titleLabel)
-        self.containerView.addSubview(self.descriptionLabel)
+        self.containerView.addSubview(self.scrollView)
+        self.scrollView.addSubview(self.descriptionLabel)
         self.containerView.addSubview(self.bookableLabel)
         self.containerView.addSubview(self.availableLabel)
+        
         self.view.addSubview(self.callButton)
         
         self.makeConstraints()
@@ -123,76 +129,65 @@ class DetailViewController: UIViewController {
     
     func makeConstraints() {
         
-        if UIDevice.current.orientation.isLandscape {
-            self.imageView.snp.remakeConstraints { make in
-                make.leading.equalToSuperview()
-                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-                make.size.equalTo(100)
-            }
-            self.titleLabel.snp.remakeConstraints { make in
-                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-
-                make.leading.equalTo(self.imageView.snp.trailing)
-                make.trailing.equalToSuperview()
-            }
-
-            self.descriptionLabel.snp.remakeConstraints { make in
-                make.top.equalTo(self.titleLabel.snp.bottom).offset(5)
-                make.leading.equalTo(self.imageView.snp.trailing)
-                make.trailing.equalToSuperview()
-            }
-
-            self.availableLabel.snp.remakeConstraints { make in
-                make.top.equalTo(self.descriptionLabel.snp.bottom).offset(5)
-                make.leading.equalTo(self.imageView.snp.trailing)
-                make.trailing.equalToSuperview()
-            }
+        // check if manually because on launch orientation is unknown
+        if UIScreen.main.bounds.width < UIScreen.main.bounds.height{
             
-         } else {
-             
-             self.imageView.snp.remakeConstraints { make in
-                 make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-                 make.leading.trailing.equalToSuperview().inset(16)
-                 make.height.equalTo(200)
-             }
-             
-             self.containerView.snp.remakeConstraints { make in
-                 make.top.equalTo(self.imageView.snp.bottom)
-                 make.leading.trailing.equalToSuperview().inset(16)
-                 make.bottom.equalTo(self.callButton.snp.top)
-             }
-             
-             // in container
-             self.titleLabel.snp.remakeConstraints { make in
-                 make.top.equalToSuperview()
-                 make.leading.trailing.equalToSuperview()
-             }
-             
-             self.descriptionLabel.snp.remakeConstraints { make in
-                 make.top.equalTo(self.titleLabel.snp.bottom)
-                 make.leading.trailing.equalToSuperview()
-                 make.height.equalTo(300)
-             }
-             
-             self.bookableLabel.snp.remakeConstraints { make in
-                 make.top.equalTo(self.descriptionLabel.snp.bottom).offset(10)
-                 make.leading.trailing.equalToSuperview()
-             }
-             
-             self.availableLabel.snp.remakeConstraints { make in
-                 make.top.equalTo(self.bookableLabel.snp.bottom).offset(5)
-                 make.leading.trailing.equalToSuperview()
-                 make.bottom.equalToSuperview()
-             }
-             //
-             
-             self.callButton.snp.remakeConstraints { make in
-                 make.height.equalTo(50)
-                 make.leading.trailing.equalToSuperview().inset(16)
-                 make.bottom.equalToSuperview().inset(40)
-             }
-         }
-
+            self.imageView.snp.remakeConstraints { make in
+                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                make.leading.trailing.equalToSuperview().inset(16)
+                make.height.equalTo(200)
+            }
+        } else {
+            
+            self.imageView.snp.remakeConstraints { make in
+                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                make.centerX.equalToSuperview()
+                make.height.equalTo(100)
+                make.width.equalTo(200)
+            }
+        }
+        
+        self.containerView.snp.makeConstraints { make in
+            make.top.equalTo(self.imageView.snp.bottom).offset(16)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).inset(16)
+            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).inset(16)
+            make.bottom.equalTo(self.callButton.snp.top).offset(-24)
+        }
+        
+        // in container
+        self.titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        self.scrollView.snp.makeConstraints { make in
+            make.top.equalTo(self.titleLabel.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        self.descriptionLabel.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview()
+            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).inset(16)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).inset(16)
+        }
+        
+        self.bookableLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.scrollView.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        self.availableLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.bookableLabel.snp.bottom).offset(5)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        //
+        
+        self.callButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(40)
+        }
     }
     
     // /////////////////////////////////////////////////////////////////////////
@@ -200,11 +195,33 @@ class DetailViewController: UIViewController {
     
     @objc
     func clickedAllTourButton() {
-        print("call")
+        self.repository.getContactInfo(completed: { contact in
+            
+            let alert = UIAlertController(title: contact.companyName, message: contact.phone, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        })
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        self.makeConstraints()
+        
+        // change if orientation changes while in DetailViewController
+        
+        if UIDevice.current.orientation.isLandscape {
+            self.imageView.snp.remakeConstraints { make in
+                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                make.centerX.equalToSuperview()
+                make.height.equalTo(100)
+                make.width.equalTo(200)
+            }
+        } else {
+            self.imageView.snp.remakeConstraints { make in
+                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                make.leading.trailing.equalToSuperview().inset(16)
+                make.height.equalTo(200)
+            }
+        }
     }
 }
 
