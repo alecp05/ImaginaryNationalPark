@@ -10,8 +10,19 @@
 		58EF21FE48C5EA99E078C24E /* Pods_ImaginaryNationalPark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23B0BC563DE457357369C8A7 /* Pods_ImaginaryNationalPark.framework */; };
 		701CD0F22AAF3915004F2572 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CD0F12AAF3915004F2572 /* AppDelegate.swift */; };
 		701CD0F42AAF3915004F2572 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CD0F32AAF3915004F2572 /* SceneDelegate.swift */; };
-		701CD0F62AAF3915004F2572 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CD0F52AAF3915004F2572 /* ViewController.swift */; };
+		701CD0F62AAF3915004F2572 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CD0F52AAF3915004F2572 /* HomeViewController.swift */; };
 		701CD0FB2AAF3915004F2572 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 701CD0FA2AAF3915004F2572 /* Assets.xcassets */; };
+		701CD10C2AAF623C004F2572 /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CD10B2AAF623C004F2572 /* ApiRepository.swift */; };
+		701CD10E2AAF6469004F2572 /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CD10D2AAF6469004F2572 /* Tour.swift */; };
+		701CD1112AAF69EE004F2572 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CD1102AAF69EE004F2572 /* Request.swift */; };
+		702A3A702AB0C469009940E4 /* TourExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A6F2AB0C469009940E4 /* TourExtension.swift */; };
+		702A3A742AB19B07009940E4 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A732AB19B07009940E4 /* Contact.swift */; };
+		702A3A782AB1C3F7009940E4 /* CustomSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A772AB1C3F7009940E4 /* CustomSplitViewController.swift */; };
+		702A3A7C2AB1D72C009940E4 /* CallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A7B2AB1D72C009940E4 /* CallView.swift */; };
+		709967262AB05BF800148960 /* TourDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709967252AB05BF800148960 /* TourDataSource.swift */; };
+		709967282AB05C1F00148960 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709967272AB05C1F00148960 /* Selection.swift */; };
+		7099672A2AB05E8F00148960 /* TourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709967292AB05E8F00148960 /* TourCell.swift */; };
+		7099672C2AB094C200148960 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7099672B2AB094C200148960 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,9 +31,20 @@
 		701CD0EE2AAF3915004F2572 /* ImaginaryNationalPark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImaginaryNationalPark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		701CD0F12AAF3915004F2572 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		701CD0F32AAF3915004F2572 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		701CD0F52AAF3915004F2572 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		701CD0F52AAF3915004F2572 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		701CD0FA2AAF3915004F2572 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		701CD0FF2AAF3915004F2572 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		701CD10B2AAF623C004F2572 /* ApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
+		701CD10D2AAF6469004F2572 /* Tour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tour.swift; sourceTree = "<group>"; };
+		701CD1102AAF69EE004F2572 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		702A3A6F2AB0C469009940E4 /* TourExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourExtension.swift; sourceTree = "<group>"; };
+		702A3A732AB19B07009940E4 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		702A3A772AB1C3F7009940E4 /* CustomSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplitViewController.swift; sourceTree = "<group>"; };
+		702A3A7B2AB1D72C009940E4 /* CallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallView.swift; sourceTree = "<group>"; };
+		709967252AB05BF800148960 /* TourDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourDataSource.swift; sourceTree = "<group>"; };
+		709967272AB05C1F00148960 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
+		709967292AB05E8F00148960 /* TourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCell.swift; sourceTree = "<group>"; };
+		7099672B2AB094C200148960 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B95D440B383B6D7439BEA733 /* Pods-ImaginaryNationalPark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImaginaryNationalPark.release.xcconfig"; path = "Target Support Files/Pods-ImaginaryNationalPark/Pods-ImaginaryNationalPark.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,13 +90,80 @@
 		701CD0F02AAF3915004F2572 /* ImaginaryNationalPark */ = {
 			isa = PBXGroup;
 			children = (
-				701CD0F12AAF3915004F2572 /* AppDelegate.swift */,
-				701CD0F32AAF3915004F2572 /* SceneDelegate.swift */,
-				701CD0F52AAF3915004F2572 /* ViewController.swift */,
+				701CD10F2AAF69DF004F2572 /* Utilities */,
+				701CD10A2AAF41B6004F2572 /* ViewController */,
+				701CD1092AAF41B0004F2572 /* View */,
+				701CD1082AAF41AB004F2572 /* Extensions */,
+				701CD1072AAF418A004F2572 /* Model */,
+				701CD1062AAF4173004F2572 /* Database */,
+				701CD1052AAF4167004F2572 /* ApplicationDelegates */,
 				701CD0FA2AAF3915004F2572 /* Assets.xcassets */,
 				701CD0FF2AAF3915004F2572 /* Info.plist */,
 			);
 			path = ImaginaryNationalPark;
+			sourceTree = "<group>";
+		};
+		701CD1052AAF4167004F2572 /* ApplicationDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				701CD0F12AAF3915004F2572 /* AppDelegate.swift */,
+				701CD0F32AAF3915004F2572 /* SceneDelegate.swift */,
+			);
+			path = ApplicationDelegates;
+			sourceTree = "<group>";
+		};
+		701CD1062AAF4173004F2572 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				701CD10B2AAF623C004F2572 /* ApiRepository.swift */,
+				709967252AB05BF800148960 /* TourDataSource.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		701CD1072AAF418A004F2572 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				701CD10D2AAF6469004F2572 /* Tour.swift */,
+				709967272AB05C1F00148960 /* Selection.swift */,
+				702A3A732AB19B07009940E4 /* Contact.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		701CD1082AAF41AB004F2572 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				702A3A6F2AB0C469009940E4 /* TourExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		701CD1092AAF41B0004F2572 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				709967292AB05E8F00148960 /* TourCell.swift */,
+				702A3A7B2AB1D72C009940E4 /* CallView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		701CD10A2AAF41B6004F2572 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				701CD0F52AAF3915004F2572 /* HomeViewController.swift */,
+				7099672B2AB094C200148960 /* DetailViewController.swift */,
+				702A3A772AB1C3F7009940E4 /* CustomSplitViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		701CD10F2AAF69DF004F2572 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				701CD1102AAF69EE004F2572 /* Request.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		DFCC034DECA4D2FA2DEA8DC7 /* Frameworks */ = {
@@ -198,9 +287,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				701CD0F62AAF3915004F2572 /* ViewController.swift in Sources */,
+				702A3A742AB19B07009940E4 /* Contact.swift in Sources */,
+				702A3A702AB0C469009940E4 /* TourExtension.swift in Sources */,
+				709967262AB05BF800148960 /* TourDataSource.swift in Sources */,
+				702A3A7C2AB1D72C009940E4 /* CallView.swift in Sources */,
+				701CD0F62AAF3915004F2572 /* HomeViewController.swift in Sources */,
+				7099672A2AB05E8F00148960 /* TourCell.swift in Sources */,
 				701CD0F22AAF3915004F2572 /* AppDelegate.swift in Sources */,
 				701CD0F42AAF3915004F2572 /* SceneDelegate.swift in Sources */,
+				701CD1112AAF69EE004F2572 /* Request.swift in Sources */,
+				709967282AB05C1F00148960 /* Selection.swift in Sources */,
+				702A3A782AB1C3F7009940E4 /* CustomSplitViewController.swift in Sources */,
+				7099672C2AB094C200148960 /* DetailViewController.swift in Sources */,
+				701CD10E2AAF6469004F2572 /* Tour.swift in Sources */,
+				701CD10C2AAF623C004F2572 /* ApiRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +433,7 @@
 				INFOPLIST_FILE = ImaginaryNationalPark/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -361,6 +462,7 @@
 				INFOPLIST_FILE = ImaginaryNationalPark/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
