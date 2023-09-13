@@ -59,13 +59,10 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
     
     private var availableLabel: UILabel = UILabel()
     
-    private lazy var callButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("CALL TO BOOK", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .brown.withAlphaComponent(0.5)
-        button.addTarget(self, action: #selector(clickedAllTourButton), for: .touchUpInside)
-        return button
+    private lazy var callView: UIView = {
+        let view = CallView()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(clickedAllTourButton)))
+        return view
     }()
     
     private var dateFormatter: DateFormatter = {
@@ -125,7 +122,7 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
             
             self.logoImageView.isHidden = false
             self.bookableLabel.isHidden = true
-            self.callButton.isHidden = true
+            self.callView.isHidden = true
         }
         
         // logo when its empty
@@ -141,7 +138,7 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
         self.containerView.addSubview(self.bookableLabel)
         self.containerView.addSubview(self.availableLabel)
         
-        self.view.addSubview(self.callButton)
+        self.view.addSubview(self.callView)
         
         self.makeConstraints()
     }
@@ -149,8 +146,8 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
     func makeConstraints() {
         
         self.logoImageView.snp.remakeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(20)
+            make.leading.trailing.bottom.equalToSuperview().inset(20)
         }
         
         // check if manually because on launch orientation is unknown
@@ -176,7 +173,7 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
             make.top.equalTo(self.imageView.snp.bottom).offset(16)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).inset(16)
             make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).inset(16)
-            make.bottom.equalTo(self.callButton.snp.top).offset(-24)
+            make.bottom.equalTo(self.callView.snp.top)
         }
         
         // in container
@@ -208,8 +205,7 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
         }
         //
         
-        self.callButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
+        self.callView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(40)
         }
@@ -231,7 +227,7 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
-        // change if orientation changes while in DetailViewController
+        // update constraints if orientation changes while in DetailViewController
         
         if UIDevice.current.orientation.isLandscape {
             self.imageView.snp.remakeConstraints { make in
@@ -255,10 +251,10 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
     
     func didSelectTour(tour: Tour) {
         
-        // components hidden
+        // components visibility
         self.logoImageView.isHidden = true
         self.bookableLabel.isHidden = false
-        self.callButton.isHidden = false
+        self.callView.isHidden = false
         
         self.titleLabel.text = tour.title
         self.descriptionLabel.text = tour.description
