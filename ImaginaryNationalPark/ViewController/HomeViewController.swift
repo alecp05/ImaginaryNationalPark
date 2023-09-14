@@ -191,7 +191,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             
             self.repository.getTourWithID(id: tour.id, completed: { tour in
                 
-                if UIScreen.main.bounds.width > UIScreen.main.bounds.height {
+                if UIScreen.main.bounds.width > UIScreen.main.bounds.height || UIDevice.current.userInterfaceIdiom == .pad {
                     self.delegate.didSelectTour(tour: tour)
                 } else {
                     let controller = DetailViewController(tour: tour, repository: self.repository)
