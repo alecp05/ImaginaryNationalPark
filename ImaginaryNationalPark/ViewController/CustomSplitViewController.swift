@@ -24,14 +24,15 @@ class CustomSplitViewController: UISplitViewController, UISplitViewControllerDel
     
     private lazy var homeNavigationController = UINavigationController(rootViewController: self.homeViewController)
     private let detailViewController = DetailViewController(tour: nil, repository: ApiRepository())
+    private let emptyViewController = EmptyViewController()
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Life Cycle
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        
-        self.viewControllers = [homeNavigationController, EmptyViewController()]
+
+        self.viewControllers = [self.homeNavigationController, self.emptyViewController]
     }
     
     required init?(coder: NSCoder) {
@@ -46,16 +47,8 @@ class CustomSplitViewController: UISplitViewController, UISplitViewControllerDel
         super.viewDidLoad()
         
         self.delegate = self
-        
-        if UIDevice.current.userInterfaceIdiom != .pad {
-            self.preferredDisplayMode = .oneBesideSecondary
-        }
-    }
-    
-    // /////////////////////////////////////////////////////////////////////////
-    // MARK: - Functions
-    
-    func changeViewController() {
+
+        self.preferredDisplayMode = .oneBesideSecondary
 
     }
     
