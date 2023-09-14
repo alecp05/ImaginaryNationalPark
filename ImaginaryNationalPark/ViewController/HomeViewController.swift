@@ -111,15 +111,15 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         
         self.allTourButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.leading.equalToSuperview()
+            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
             make.height.equalTo(50)
-            make.width.equalToSuperview().dividedBy(2)
+            make.width.equalTo(self.view.safeAreaLayoutGuide.snp.width).dividedBy(2)
         }
         
         self.topFiveButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(self.allTourButton.snp.trailing)
-            make.trailing.equalToSuperview()
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
             make.height.equalTo(50)
         }
         
