@@ -12,19 +12,10 @@ import SnapKit
 // MARK: - DetailViewController -
 // /////////////////////////////////////////////////////////////////////////
 
-class DetailViewController: UIViewController, HomeViewControllerDelegate {
+class DetailViewController: UIViewController {
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
-    
-    private var logoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "imaginaryLogo")
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        imageView.isHidden = true
-        return imageView
-    }()
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -71,7 +62,12 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
         return formatter
     }()
     
-    var tour: Tour?
+    var tour: Tour? {
+        didSet {
+            self.updateTour()
+        }
+    }
+    
     var repository: ApiRepository
     
     // /////////////////////////////////////////////////////////////////////////
@@ -98,35 +94,7 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
         
         self.view.backgroundColor = .white
         
-        if let tour = self.tour {
-            self.title = tour.title
-            self.titleLabel.text = tour.title
-            self.descriptionLabel.text = tour.description
-            
-            if let startDate = tour.formattedDate(using: self.dateFormatter, date: tour.startDate),
-               let endDate = (tour.formattedDate(using: self.dateFormatter, date: tour.endDate)) {
-                
-                self.availableLabel.text = "\(startDate) - \(endDate)"
-            }
-            
-            if let url = URL(string: tour.thumbnail) {
-                URLSession.shared.dataTask(with: url) { (data, response, error) in
-                    guard let imageData = data else { return }
-                    DispatchQueue.main.async {
-                        
-                        self.imageView.image = UIImage(data: imageData)
-                    }
-                }.resume()
-            }
-        } else {
-            
-            self.logoImageView.isHidden = false
-            self.bookableLabel.isHidden = true
-            self.callView.isHidden = true
-        }
-        
-        // logo when its empty
-        self.view.addSubview(self.logoImageView)
+        self.updateTour()
         
         // subviews
         self.view.addSubview(self.imageView)
@@ -144,11 +112,6 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
     }
     
     func makeConstraints() {
-        
-        self.logoImageView.snp.remakeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(20)
-            make.leading.trailing.bottom.equalToSuperview().inset(20)
-        }
         
         // check if manually because on launch orientation is unknown
         // portrait
@@ -214,6 +177,30 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     
+    func updateTour() {
+        if let tour = self.tour {
+            self.title = tour.title
+            self.titleLabel.text = tour.title
+            self.descriptionLabel.text = tour.description
+            
+            if let startDate = tour.formattedDate(using: self.dateFormatter, date: tour.startDate),
+               let endDate = (tour.formattedDate(using: self.dateFormatter, date: tour.endDate)) {
+                
+                self.availableLabel.text = "\(startDate) - \(endDate)"
+            }
+            
+            if let url = URL(string: tour.thumbnail) {
+                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                    guard let imageData = data else { return }
+                    DispatchQueue.main.async {
+                        
+                        self.imageView.image = UIImage(data: imageData)
+                    }
+                }.resume()
+            }
+        }
+    }
+    
     @objc
     func clickedAllTourButton() {
         self.repository.getContactInfo(completed: { contact in
@@ -244,37 +231,5 @@ class DetailViewController: UIViewController, HomeViewControllerDelegate {
             }
         }
     }
-    
-    // /////////////////////////////////////////////////////////////////////////
-    // MARK: - HomeViewControllerDelegate -
-    // /////////////////////////////////////////////////////////////////////////
-    
-    func didSelectTour(tour: Tour) {
-        
-        // components visibility
-        self.logoImageView.isHidden = true
-        self.bookableLabel.isHidden = false
-        self.callView.isHidden = false
-        
-        self.titleLabel.text = tour.title
-        self.descriptionLabel.text = tour.description
-        
-        if let startDate = tour.formattedDate(using: self.dateFormatter, date: tour.startDate),
-           let endDate = (tour.formattedDate(using: self.dateFormatter, date: tour.endDate)) {
-            
-            self.availableLabel.text = "\(startDate) - \(endDate)"
-        }
-        
-        if let url = URL(string: tour.thumbnail) {
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let imageData = data else { return }
-                DispatchQueue.main.async {
-                    
-                    self.imageView.image = UIImage(data: imageData)
-                }
-            }.resume()
-        }
-    }
-    
 }
 
