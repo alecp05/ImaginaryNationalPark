@@ -28,13 +28,13 @@ class TourCell: UITableViewCell {
         return imageView
     }()
     
-    var titleLabel: UILabel  = {
+    var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         return label
     }()
     
-    var priceLabel: UILabel  = {
+    var priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         return label
@@ -64,6 +64,7 @@ class TourCell: UITableViewCell {
         self.makeConstraints()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -5,8 +5,8 @@
 //  Created by Alec on 12.09.23.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 // /////////////////////////////////////////////////////////////////////////
 // MARK: - DetailViewController -
@@ -34,14 +34,14 @@ class DetailViewController: UIViewController {
     
     private let scrollView: UIScrollView = UIScrollView()
     
-    private var descriptionLabel:  UILabel = {
+    private var descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.numberOfLines = 0
         return label
     }()
     
-    private var bookableLabel:  UILabel = {
+    private var bookableLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .headline).withSize(20)
         label.text = "BOOKABLE"
@@ -52,7 +52,7 @@ class DetailViewController: UIViewController {
     
     private lazy var callView: UIView = {
         let view = CallView()
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action:  #selector(clickedAllTourButton)))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clickedAllTourButton)))
         return view
     }()
     
@@ -73,7 +73,6 @@ class DetailViewController: UIViewController {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Life Cycle
     
-    
     init(tour: Tour?, repository: ApiRepository) {
         self.tour = tour
         self.repository = repository
@@ -81,6 +80,7 @@ class DetailViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -190,7 +190,7 @@ class DetailViewController: UIViewController {
             }
             
             if let url = URL(string: tour.thumbnail) {
-                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                URLSession.shared.dataTask(with: url) { data, response, error in
                     guard let imageData = data else { return }
                     DispatchQueue.main.async {
                         
@@ -209,7 +209,6 @@ class DetailViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         })
-        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -232,4 +231,3 @@ class DetailViewController: UIViewController {
         }
     }
 }
-

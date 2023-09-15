@@ -5,8 +5,8 @@
 //  Created by Alec on 11.09.23.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 // /////////////////////////////////////////////////////////////////////////
 // MARK: - HomeViewController Delegate -
@@ -158,7 +158,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             
             // image
             if let url = URL(string: tour.thumbnail) {
-                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                URLSession.shared.dataTask(with: url) { data, response, error in
                     guard let imageData = data else { return }
                     DispatchQueue.main.async {
                         cell.thumbnail.image = UIImage(data: imageData)
@@ -201,4 +201,3 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         }
     }
 }
-

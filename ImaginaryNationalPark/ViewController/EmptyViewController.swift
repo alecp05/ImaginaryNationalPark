@@ -44,6 +44,5 @@ class EmptyViewController: UIViewController {
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(20)
             make.leading.trailing.bottom.equalToSuperview().inset(20)
         }
-        
     }
 }

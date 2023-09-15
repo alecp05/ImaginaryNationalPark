@@ -5,8 +5,8 @@
 //  Created by Alec on 13.09.23.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 // /////////////////////////////////////////////////////////////////////////
 // MARK: - CallView -
@@ -17,7 +17,7 @@ class CallView: UIView {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
     
-    private var systemImageView : UIImageView = {
+    private var systemImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "phone")
         imageView.contentMode = .scaleAspectFit

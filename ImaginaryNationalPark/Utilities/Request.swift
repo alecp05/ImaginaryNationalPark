@@ -12,12 +12,12 @@ import Foundation
 // /////////////////////////////////////////////////////////////////////////
 
 enum Request {
-    
+
     case allTours
     case topFive
     case tourDetail(Int)
     case contact
-    
+
     var value: String {
         switch self {
         case .allTours:
@@ -29,6 +29,5 @@ enum Request {
         case .contact:
             return "http://api.foxtur.com/v1/contact/"
         }
-
     }
 }

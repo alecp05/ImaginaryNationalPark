@@ -11,6 +11,6 @@ import Foundation
 // MARK: - Section -
 // /////////////////////////////////////////////////////////////////////////
 
-enum Section: CaseIterable{
+enum Section: CaseIterable {
     case main
 }

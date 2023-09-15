@@ -35,6 +35,7 @@ class CustomSplitViewController: UISplitViewController, UISplitViewControllerDel
         self.viewControllers = [self.homeNavigationController, self.emptyViewController]
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -49,7 +50,6 @@ class CustomSplitViewController: UISplitViewController, UISplitViewControllerDel
         self.delegate = self
 
         self.preferredDisplayMode = .oneBesideSecondary
-
     }
     
     // /////////////////////////////////////////////////////////////////////////
@@ -68,5 +68,4 @@ class CustomSplitViewController: UISplitViewController, UISplitViewControllerDel
         self.detailViewController.tour = tour
         self.showDetailViewController(self.detailViewController, sender: self)
     }
-    
 }
