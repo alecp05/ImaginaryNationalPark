@@ -13,11 +13,17 @@ import Foundation
 
 enum Request {
 
+    // /////////////////////////////////////////////////////////////////////////
+    // MARK: - Cases
+    
     case allTours
     case topFive
     case tourDetail(Int)
     case contact
 
+    // /////////////////////////////////////////////////////////////////////////
+    // MARK: - Properties
+    
     var value: String {
         switch self {
         case .allTours:
