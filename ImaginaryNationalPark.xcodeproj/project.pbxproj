@@ -15,7 +15,7 @@
 		701CD10C2AAF623C004F2572 /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CD10B2AAF623C004F2572 /* ApiRepository.swift */; };
 		701CD10E2AAF6469004F2572 /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CD10D2AAF6469004F2572 /* Tour.swift */; };
 		701CD1112AAF69EE004F2572 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CD1102AAF69EE004F2572 /* Request.swift */; };
-		702A3A702AB0C469009940E4 /* TourExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A6F2AB0C469009940E4 /* TourExtension.swift */; };
+		702A3A702AB0C469009940E4 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A6F2AB0C469009940E4 /* DateExtension.swift */; };
 		702A3A742AB19B07009940E4 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A732AB19B07009940E4 /* Contact.swift */; };
 		702A3A782AB1C3F7009940E4 /* CustomSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A772AB1C3F7009940E4 /* CustomSplitViewController.swift */; };
 		705A0C6D2AB312C600626BD1 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705A0C6C2AB312C600626BD1 /* EmptyViewController.swift */; };
@@ -38,7 +38,7 @@
 		701CD10B2AAF623C004F2572 /* ApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
 		701CD10D2AAF6469004F2572 /* Tour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tour.swift; sourceTree = "<group>"; };
 		701CD1102AAF69EE004F2572 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		702A3A6F2AB0C469009940E4 /* TourExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourExtension.swift; sourceTree = "<group>"; };
+		702A3A6F2AB0C469009940E4 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		702A3A732AB19B07009940E4 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		702A3A772AB1C3F7009940E4 /* CustomSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplitViewController.swift; sourceTree = "<group>"; };
 		705A0C6C2AB312C600626BD1 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		701CD1082AAF41AB004F2572 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				702A3A6F2AB0C469009940E4 /* TourExtension.swift */,
+				702A3A6F2AB0C469009940E4 /* DateExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -288,7 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				702A3A742AB19B07009940E4 /* Contact.swift in Sources */,
-				702A3A702AB0C469009940E4 /* TourExtension.swift in Sources */,
+				702A3A702AB0C469009940E4 /* DateExtension.swift in Sources */,
 				709967262AB05BF800148960 /* TourDataSource.swift in Sources */,
 				701CD0F62AAF3915004F2572 /* HomeViewController.swift in Sources */,
 				7099672A2AB05E8F00148960 /* TourCell.swift in Sources */,

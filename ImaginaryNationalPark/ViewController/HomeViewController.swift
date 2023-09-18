@@ -155,7 +155,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             cell.descriptionLabel.text = tour.shortDescription
             
             // end Date
-            if let date = tour.formattedDate(date: tour.endDate) {
+            if let date = Date().formattedDate(date: tour.endDate) {
                 cell.availableLabel.text = date
             }
             

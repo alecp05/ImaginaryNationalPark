@@ -176,8 +176,8 @@ class DetailViewController: UIViewController {
             self.titleLabel.text = tour.title
             self.descriptionLabel.text = tour.description
             
-            if let startDate = tour.formattedDate(date: tour.startDate),
-               let endDate = (tour.formattedDate(date: tour.endDate)) {
+            if let startDate = Date().formattedDate(date: tour.startDate),
+               let endDate = Date().formattedDate(date: tour.endDate) {
                 
                 self.availableLabel.text = "\(startDate) - \(endDate)"
             }
