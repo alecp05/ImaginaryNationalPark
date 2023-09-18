@@ -16,11 +16,9 @@ class CustomSplitViewController: UISplitViewController, UISplitViewControllerDel
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
     
-    private lazy var homeViewController = {
-        let controller = HomeViewController()
+    private lazy var homeViewController = HomeViewController().configure { controller in
         controller.delegate = self
-        return controller
-    }()
+    }
     
     private lazy var homeNavigationController = UINavigationController(rootViewController: self.homeViewController)
     private let detailViewController = DetailViewController(tour: nil, repository: ApiRepository())

@@ -17,44 +17,34 @@ class DetailViewController: UIViewController {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
     
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
+    private let imageView: UIImageView = UIImageView().configure { imageView in
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        return imageView
-    }()
+    }
     
     private var containerView: UIView = UIView()
     
-    private var titleLabel: UILabel = {
-        let label = UILabel()
+    private var titleLabel: UILabel = UILabel().configure { label in
         label.font = UIFont.preferredFont(forTextStyle: .headline).withSize(24)
-        return label
-    }()
+    }
     
     private let scrollView: UIScrollView = UIScrollView()
     
-    private var descriptionLabel: UILabel = {
-        let label = UILabel()
+    private var descriptionLabel: UILabel = UILabel().configure { label in
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.numberOfLines = 0
-        return label
-    }()
+    }
     
-    private var bookableLabel: UILabel = {
-        let label = UILabel()
+    private var bookableLabel: UILabel = UILabel().configure { label in
         label.font = UIFont.preferredFont(forTextStyle: .headline).withSize(20)
         label.text = "BOOKABLE"
-        return label
-    }()
+    }
     
     private var availableLabel: UILabel = UILabel()
     
-    private lazy var callView: UIView = {
-        let view = CallView()
+    private lazy var callView: UIView = UIView().configure { view in
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clickedAllTourButton)))
-        return view
-    }()
+    }
     
     private var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()

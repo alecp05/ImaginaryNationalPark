@@ -16,13 +16,11 @@ class EmptyViewController: UIViewController {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
     
-    private var logoImageView: UIImageView = {
-        let imageView = UIImageView()
+    private var logoImageView: UIImageView = UIImageView().configure { imageView in
         imageView.image = UIImage(named: "imaginaryLogo")
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        return imageView
-    }()
+    }
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - EmptyViewController

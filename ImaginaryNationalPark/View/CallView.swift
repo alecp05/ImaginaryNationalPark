@@ -17,23 +17,19 @@ class CallView: UIView {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
     
-    private var systemImageView: UIImageView = {
-        let imageView = UIImageView()
+    private var systemImageView: UIImageView = UIImageView().configure { imageView in
         imageView.image = UIImage(systemName: "phone")
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.tintColor = .black
-        return imageView
-    }()
+    }
     
-    private var buttonLabel: UILabel = {
-        let label = UILabel()
+    private var buttonLabel: UILabel = UILabel().configure { label in
         label.font = UIFont.preferredFont(forTextStyle: .headline).withSize(20)
         label.text = "CALL TO BOOK"
         label.textColor = .black
         label.textAlignment = .center
-        return label
-    }()
+    }
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Life Cycle

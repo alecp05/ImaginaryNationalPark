@@ -7,6 +7,7 @@
 
 import SnapKit
 import UIKit
+import BIFiOSUtils
 
 // /////////////////////////////////////////////////////////////////////////
 // MARK: - HomeViewController Delegate -
@@ -25,45 +26,37 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
     
-    private let imageLogo: UIImageView = {
-        let imageView = UIImageView()
+    private let imageLogo: UIImageView = UIImageView().configure { imageView in
         imageView.image = UIImage(named: "imaginaryLogo")
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        return imageView
-    }()
+    }
     
-    private lazy var allTourButton: UIButton = {
-        let button = UIButton()
+    private lazy var allTourButton: UIButton = UIButton().configure { button in
         button.setTitle("ALL", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(clickedAllTourButton), for: .touchUpInside)
         button.backgroundColor = .brown
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.white.cgColor
-        return button
-    }()
+    }
     
-    private lazy var topFiveButton: UIButton = {
-        let button = UIButton()
+    private lazy var topFiveButton: UIButton = UIButton().configure { button in
         button.setTitle("TOP 5", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(clickedTopFiveButton), for: .touchUpInside)
         button.backgroundColor = .brown
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.white.cgColor
-        return button
-    }()
+    }
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+    private lazy var tableView: UITableView = UITableView().configure { tableView in 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.sectionHeaderTopPadding = 0
         tableView.estimatedRowHeight = 120
         tableView.register(TourCell.self, forCellReuseIdentifier: TourCell.reuseIdentifier)
         tableView.delegate = self
-        return tableView
-    }()
+    }
     
     private lazy var dataSource: TourDataSource = self.configureDataSource()
     

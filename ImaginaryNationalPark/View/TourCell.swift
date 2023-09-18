@@ -16,29 +16,21 @@ class TourCell: UITableViewCell {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
     
-    static let reuseIdentifier = String(describing: TourCell.self)
-    
     private var containerView: UIView = UIView()
     private var informationContainerView: UIView = UIView()
     
-    var thumbnail: UIImageView = {
-        let imageView = UIImageView()
+    var thumbnail: UIImageView = UIImageView().configure { imageView in
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
+    }
     
-    var titleLabel: UILabel = {
-        let label = UILabel()
+    var titleLabel: UILabel = UILabel().configure { label in
         label.font = UIFont.preferredFont(forTextStyle: .headline)
-        return label
-    }()
+    }
     
-    var priceLabel: UILabel = {
-        let label = UILabel()
+    var priceLabel: UILabel = UILabel().configure { label in
         label.font = UIFont.preferredFont(forTextStyle: .headline)
-        return label
-    }()
+    }
     
     var descriptionLabel: UILabel = UILabel()
     var availableLabel: UILabel = UILabel()
