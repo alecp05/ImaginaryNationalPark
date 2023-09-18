@@ -1,20 +1,122 @@
 PODS:
   - Alamofire (5.8.0)
+  - AlamofireObjectMapper (6.4.5):
+    - Alamofire (~> 5.1)
+    - ObjectMapper (~> 3.5.2)
+  - BIFiOSUtils (5.3.33):
+    - BIFiOSUtils/Default (= 5.3.33)
+  - BIFiOSUtils/CollectionUI (5.3.33):
+    - BIFiOSUtils/Extensions
+    - BIFiOSUtils/RxAdditions
+    - BIFiOSUtils/ViewBinding
+    - DiffableDataSources
+    - SnapKit
+    - ViewModel/UIKit
+  - BIFiOSUtils/CoreExtensions (5.3.33):
+    - BIFiOSUtils/ViewBinding
+    - DeviceKit
+    - SnapKit
+  - BIFiOSUtils/Default (5.3.33):
+    - BIFiOSUtils/CollectionUI
+    - BIFiOSUtils/DefaultsAdditions
+    - BIFiOSUtils/Extensions
+    - BIFiOSUtils/ObjectMapperAdditions
+    - BIFiOSUtils/RxAdditions
+    - BIFiOSUtils/Service
+    - BIFiOSUtils/ViewBinding
+  - BIFiOSUtils/DefaultsAdditions (5.3.33):
+    - BIFiOSUtils/ObjectMapperAdditions
+    - SwiftyUserDefaults
+  - BIFiOSUtils/Extensions (5.3.33):
+    - BIFiOSUtils/CoreExtensions
+    - BIFiOSUtils/UIKitExtensions
+    - BIFiOSUtils/ViewBinding
+  - BIFiOSUtils/ObjectMapperAdditions (5.3.33):
+    - BIFiOSUtils/Extensions
+    - ObjectMapper
+  - BIFiOSUtils/RxAdditions (5.3.33):
+    - BIFiOSUtils/Extensions
+    - BIFiOSUtils/ViewBinding
+    - RxCocoa
+    - RxDataSources
+    - RxSwift
+  - BIFiOSUtils/Service (5.3.33):
+    - Alamofire
+    - AlamofireObjectMapper (>= 6.4.5)
+    - BIFiOSUtils/ObjectMapperAdditions
+  - BIFiOSUtils/UIKitExtensions (5.3.33):
+    - BIFiOSUtils/CoreExtensions
+    - BIFiOSUtils/ViewBinding
+    - DeviceKit
+    - SnapKit
+  - BIFiOSUtils/ViewBinding (5.3.33)
+  - DeviceKit (5.0.0)
+  - DiffableDataSources (0.5.0):
+    - DifferenceKit/AppKitExtension (~> 1.1)
+    - DifferenceKit/UIKitExtension (~> 1.1)
+  - DifferenceKit/Core (1.3.0)
+  - DifferenceKit/UIKitExtension (1.3.0):
+    - DifferenceKit/Core
+  - Differentiator (5.0.0)
+  - ObjectMapper (3.5.3)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxDataSources (5.0.0):
+    - Differentiator (~> 5.0)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
   - SnapKit (5.6.0)
+  - SwiftyUserDefaults (5.3.0)
+  - ViewModel/UIKit (5.0.10):
+    - RxCocoa
+    - RxSwift
 
 DEPENDENCIES:
   - Alamofire
+  - BIFiOSUtils
   - SnapKit
 
 SPEC REPOS:
+  "git@bitbucket.org:bitsfabrik/bitspods.git":
+    - AlamofireObjectMapper
+    - BIFiOSUtils
+    - ViewModel
+  https://github.com/CocoaPods/Specs.git:
+    - DeviceKit
+    - DiffableDataSources
+    - DifferenceKit
+    - Differentiator
+    - ObjectMapper
+    - RxCocoa
+    - RxDataSources
+    - RxRelay
+    - RxSwift
+    - SwiftyUserDefaults
   trunk:
     - Alamofire
     - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
+  AlamofireObjectMapper: 3eeba2c19a741da4adbf225fa059cb74caee521c
+  BIFiOSUtils: d3f8154be4744131a4f1cf4d9b83d1eabfcb5600
+  DeviceKit: 0fd016a2cb67aca17c33dc23171cac270131eb88
+  DiffableDataSources: 1ddde2de1978cc02619b2c3bfafab20e68b57279
+  DifferenceKit: ab185c4d7f9cef8af3fcf593e5b387fb81e999ca
+  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftyUserDefaults: 63f80248cf5bfb3458825d9a78f2eb7e1293a040
+  ViewModel: f202e4fc3a2ec936be5479b04dfe40fdbd86e83d
 
-PODFILE CHECKSUM: c0c5adc6b40ad524ea01f20efbf4df3f8f9a6550
+PODFILE CHECKSUM: 420c9f120b1e32a8a7d5acd27041738c2f8592dc
 
 COCOAPODS: 1.12.1
