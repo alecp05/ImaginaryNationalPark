@@ -16,9 +16,12 @@ extension Tour {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
 
-    func formattedDate(using formatter: DateFormatter, date: String) -> String? {
+    func formattedDate(date: String) -> String? {
+        
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
-        if let date = formatter.date(from: date) {
+        if let date = dateFormatter.date(from: date) {
 
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM d, h:mm a"
