@@ -178,7 +178,8 @@ class HomeViewController: UIViewController, UITableViewDelegate {
                 if UIScreen.main.bounds.width > UIScreen.main.bounds.height || UIDevice.current.userInterfaceIdiom == .pad {
                     self.delegate?.didSelectTour(tour: tour)
                 } else {
-                    let controller = DetailViewController(tour: tour, repository: self.repository)
+                    let controller = DetailViewController(repository: self.repository)
+                    controller.tour = tour
                     self.navigationController?.pushViewController(controller, animated: true)
                 }
             })

@@ -21,7 +21,7 @@ class CustomSplitViewController: UISplitViewController, UISplitViewControllerDel
     }
     
     private lazy var homeNavigationController = UINavigationController(rootViewController: self.homeViewController)
-    private let detailViewController = DetailViewController(tour: nil, repository: ApiRepository())
+    private let detailViewController = DetailViewController(repository: ApiRepository())
     private let emptyViewController = EmptyViewController()
     
     // /////////////////////////////////////////////////////////////////////////

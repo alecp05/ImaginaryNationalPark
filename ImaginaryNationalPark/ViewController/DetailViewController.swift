@@ -69,8 +69,7 @@ class DetailViewController: UIViewController {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Life Cycle
     
-    init(tour: Tour?, repository: ApiRepository) {
-        self.tour = tour
+    init(repository: ApiRepository) {
         self.repository = repository
         
         super.init(nibName: nil, bundle: nil)
