@@ -45,7 +45,7 @@ class DetailViewController: UIViewController {
     private var availableLabel: UILabel = UILabel()
     
     private lazy var callView: UIView = CallView().configure { view in
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clickedAllTourButton)))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(callButtonClicked)))
     }
     
     var tour: Tour? {
@@ -99,20 +99,16 @@ class DetailViewController: UIViewController {
     
     func makeConstraints() {
         
-        // check if manually because on launch orientation is unknown
-        // portrait
-        if UIScreen.main.bounds.width < UIScreen.main.bounds.height {
+        self.imageView.snp.remakeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(16)
+            make.centerX.equalToSuperview()
             
-            self.imageView.snp.remakeConstraints { make in
-                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            // check if manually because on launch orientation is unknown
+            // portrait
+            if UIScreen.main.bounds.width < UIScreen.main.bounds.height {
                 make.leading.trailing.equalToSuperview().inset(16)
                 make.height.equalTo(200)
-            }
-        } else {
-            
-            self.imageView.snp.remakeConstraints { make in
-                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(16)
-                make.centerX.equalToSuperview()
+            } else {
                 make.height.equalTo(100)
                 make.width.equalTo(200)
             }
@@ -156,7 +152,7 @@ class DetailViewController: UIViewController {
         
         self.callView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().inset(40)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(10)
         }
     }
     
@@ -186,7 +182,7 @@ class DetailViewController: UIViewController {
     }
     
     @objc
-    func clickedAllTourButton() {
+    func callButtonClicked() {
         self.repository.getContactInfo(completed: { contact in
             
             let alert = UIAlertController(title: contact.companyName, message: contact.phone, preferredStyle: UIAlertController.Style.alert)
@@ -199,16 +195,17 @@ class DetailViewController: UIViewController {
         
         // update constraints if orientation changes while in DetailViewController
         
-        if UIDevice.current.orientation.isLandscape {
-            self.imageView.snp.remakeConstraints { make in
-                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(16)
-                make.centerX.equalToSuperview()
+        self.imageView.snp.remakeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(16)
+            make.centerX.equalToSuperview()
+            
+            // check if manually because on launch orientation is unknown
+            // portrait
+            if UIDevice.current.orientation.isLandscape {
                 make.height.equalTo(100)
                 make.width.equalTo(200)
-            }
-        } else {
-            self.imageView.snp.remakeConstraints { make in
-                make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                
+            } else {
                 make.leading.trailing.equalToSuperview().inset(16)
                 make.height.equalTo(200)
             }
