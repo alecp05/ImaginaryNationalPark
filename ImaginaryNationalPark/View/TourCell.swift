@@ -35,6 +35,7 @@ class TourCell: UITableViewCell {
     var descriptionLabel: UILabel = UILabel().configure { label in
         label.numberOfLines = 0
     }
+
     var availableLabel: UILabel = UILabel()
 
     // /////////////////////////////////////////////////////////////////////////

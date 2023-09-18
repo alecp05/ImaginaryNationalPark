@@ -1,5 +1,5 @@
 //
-//  Requests.swift
+//  Request.swift
 //  ImaginaryNationalPark
 //
 //  Created by Alec on 11.09.23.
@@ -15,7 +15,7 @@ enum Request {
 
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Cases
-    
+
     case allTours
     case topFive
     case tourDetail(Int)
@@ -23,7 +23,7 @@ enum Request {
 
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
-    
+
     var value: String {
         switch self {
         case .allTours:

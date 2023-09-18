@@ -5,10 +5,10 @@
 //  Created by Alec on 12.09.23.
 //
 
-import SnapKit
-import UIKit
 import Alamofire
 import AlamofireImage
+import SnapKit
+import UIKit
 
 // /////////////////////////////////////////////////////////////////////////
 // MARK: - DetailViewController -

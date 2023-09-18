@@ -5,11 +5,11 @@
 //  Created by Alec on 11.09.23.
 //
 
+import Alamofire
+import AlamofireImage
+import BIFiOSUtils
 import SnapKit
 import UIKit
-import BIFiOSUtils
-import AlamofireImage
-import Alamofire
 
 // /////////////////////////////////////////////////////////////////////////
 // MARK: - HomeViewController Delegate -

@@ -49,7 +49,7 @@ class CustomSplitViewController: UISplitViewController, UISplitViewControllerDel
 
         self.preferredDisplayMode = .oneBesideSecondary
         self.preferredPrimaryColumnWidthFraction = 0.5
-        self.maximumPrimaryColumnWidth = self.view.bounds.size.width;
+        self.maximumPrimaryColumnWidth = self.view.bounds.size.width
     }
     
     // /////////////////////////////////////////////////////////////////////////
