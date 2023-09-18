@@ -32,7 +32,9 @@ class TourCell: UITableViewCell {
         label.font = UIFont.preferredFont(forTextStyle: .headline)
     }
     
-    var descriptionLabel: UILabel = UILabel()
+    var descriptionLabel: UILabel = UILabel().configure { label in
+        label.numberOfLines = 0
+    }
     var availableLabel: UILabel = UILabel()
 
     // /////////////////////////////////////////////////////////////////////////
@@ -45,11 +47,12 @@ class TourCell: UITableViewCell {
         
         self.containerView.addSubview(self.thumbnail)
         self.containerView.addSubview(self.informationContainerView)
-        self.containerView.addSubview(self.priceLabel)
         
         self.informationContainerView.addSubview(self.titleLabel)
-        self.informationContainerView.addSubview(self.descriptionLabel)
-        self.informationContainerView.addSubview(self.availableLabel)
+        self.informationContainerView.addSubview(self.priceLabel)
+        
+        self.containerView.addSubview(self.descriptionLabel)
+        self.containerView.addSubview(self.availableLabel)
         
         self.containerView.backgroundColor = .brown.withAlphaComponent(0.5)
         
@@ -72,39 +75,41 @@ class TourCell: UITableViewCell {
         }
         
         self.thumbnail.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().inset(10)
             make.height.equalTo(80)
             make.width.equalTo(100)
-            make.top.equalToSuperview().inset(10)
-            make.leading.equalToSuperview().inset(10)
             make.bottom.lessThanOrEqualToSuperview().inset(10)
         }
         
         self.informationContainerView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(10)
             make.leading.equalTo(self.thumbnail.snp.trailing).offset(10)
-            make.trailing.equalTo(self.priceLabel.snp.leading).offset(-10)
-            make.bottom.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(10)
+            make.height.equalTo(30)
         }
         
         self.titleLabel.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.leading.equalToSuperview()
+            make.trailing.equalTo(self.priceLabel.snp.leading)
+        }
+        
+        self.priceLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.width.equalTo(120)
+            make.trailing.equalToSuperview()
         }
         
         self.descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(5)
-            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(self.informationContainerView.snp.bottom)
+            make.leading.equalTo(self.thumbnail.snp.trailing).offset(10)
+            make.trailing.equalToSuperview().inset(10)
         }
         
         self.availableLabel.snp.makeConstraints { make in
             make.top.equalTo(self.descriptionLabel.snp.bottom).offset(5)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-        
-        self.priceLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(10)
-            make.width.equalTo(110)
-            make.trailing.equalToSuperview()
-            make.bottom.lessThanOrEqualToSuperview().inset(10)
+            make.leading.equalTo(self.thumbnail.snp.trailing).offset(10)
+            make.trailing.bottom.equalToSuperview().inset(10)
         }
     }
 }

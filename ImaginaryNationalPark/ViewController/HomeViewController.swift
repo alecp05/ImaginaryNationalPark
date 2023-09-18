@@ -151,7 +151,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             }
             
             cell.titleLabel.text = tour.title
-            cell.priceLabel.text = "PRICE: \(tour.price)€"
+            cell.priceLabel.text = "PRICE: \(tour.price)0€"
             cell.descriptionLabel.text = tour.shortDescription
             
             // end Date

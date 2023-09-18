@@ -48,6 +48,8 @@ class CustomSplitViewController: UISplitViewController, UISplitViewControllerDel
         self.delegate = self
 
         self.preferredDisplayMode = .oneBesideSecondary
+        self.preferredPrimaryColumnWidthFraction = 0.5
+        self.maximumPrimaryColumnWidth = self.view.bounds.size.width;
     }
     
     // /////////////////////////////////////////////////////////////////////////
