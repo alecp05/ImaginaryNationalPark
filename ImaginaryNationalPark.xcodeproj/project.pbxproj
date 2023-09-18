@@ -18,7 +18,6 @@
 		702A3A702AB0C469009940E4 /* TourExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A6F2AB0C469009940E4 /* TourExtension.swift */; };
 		702A3A742AB19B07009940E4 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A732AB19B07009940E4 /* Contact.swift */; };
 		702A3A782AB1C3F7009940E4 /* CustomSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A772AB1C3F7009940E4 /* CustomSplitViewController.swift */; };
-		702A3A7C2AB1D72C009940E4 /* CallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A7B2AB1D72C009940E4 /* CallView.swift */; };
 		705A0C6D2AB312C600626BD1 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705A0C6C2AB312C600626BD1 /* EmptyViewController.swift */; };
 		709967262AB05BF800148960 /* TourDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709967252AB05BF800148960 /* TourDataSource.swift */; };
 		709967282AB05C1F00148960 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709967272AB05C1F00148960 /* Selection.swift */; };
@@ -42,7 +41,6 @@
 		702A3A6F2AB0C469009940E4 /* TourExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourExtension.swift; sourceTree = "<group>"; };
 		702A3A732AB19B07009940E4 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		702A3A772AB1C3F7009940E4 /* CustomSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplitViewController.swift; sourceTree = "<group>"; };
-		702A3A7B2AB1D72C009940E4 /* CallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallView.swift; sourceTree = "<group>"; };
 		705A0C6C2AB312C600626BD1 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		709967252AB05BF800148960 /* TourDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourDataSource.swift; sourceTree = "<group>"; };
 		709967272AB05C1F00148960 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				709967292AB05E8F00148960 /* TourCell.swift */,
-				702A3A7B2AB1D72C009940E4 /* CallView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -293,7 +290,6 @@
 				702A3A742AB19B07009940E4 /* Contact.swift in Sources */,
 				702A3A702AB0C469009940E4 /* TourExtension.swift in Sources */,
 				709967262AB05BF800148960 /* TourDataSource.swift in Sources */,
-				702A3A7C2AB1D72C009940E4 /* CallView.swift in Sources */,
 				701CD0F62AAF3915004F2572 /* HomeViewController.swift in Sources */,
 				7099672A2AB05E8F00148960 /* TourCell.swift in Sources */,
 				701CD0F22AAF3915004F2572 /* AppDelegate.swift in Sources */,
