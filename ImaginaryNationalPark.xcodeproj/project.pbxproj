@@ -69,6 +69,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7018B2CB2AB86A2A00EDAC37 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				701CD10B2AAF623C004F2572 /* ApiRepository.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		701CD0E52AAF3915004F2572 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +98,7 @@
 		701CD0F02AAF3915004F2572 /* ImaginaryNationalPark */ = {
 			isa = PBXGroup;
 			children = (
+				7018B2CB2AB86A2A00EDAC37 /* Network */,
 				701CD10F2AAF69DF004F2572 /* Utilities */,
 				701CD10A2AAF41B6004F2572 /* ViewController */,
 				701CD1092AAF41B0004F2572 /* View */,
@@ -115,7 +124,6 @@
 		701CD1062AAF4173004F2572 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				701CD10B2AAF623C004F2572 /* ApiRepository.swift */,
 				709967252AB05BF800148960 /* TourDataSource.swift */,
 			);
 			path = Database;
