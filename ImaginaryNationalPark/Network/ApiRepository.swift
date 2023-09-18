@@ -17,31 +17,19 @@ class ApiRepository {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
     
-    var allTours: [Tour] = [Tour]()
-    var detailTour: Tour?
-    
     private let headers: HTTPHeaders = [.accept("application/json")]
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     
-    func getTours(type: Request, completed: @escaping () -> Void) {
+    func getTours(type: Request, completed: @escaping ([Tour]) -> Void) {
         
         AF.request(type.value, headers: self.headers)
             .responseDecodable(of: [Tour].self) { response in
                 
                 switch response.result {
                 case .success(let tours):
-                    
-                    if !self.allTours.isEmpty {
-                        self.allTours.removeAll()
-                    }
-                    
-                    for tour in tours {
-                        self.allTours.append(tour)
-                    }
-                    
-                    completed()
+                    completed(tours)
                 case .failure(let error):
                     print(error)
                 }
@@ -55,8 +43,6 @@ class ApiRepository {
                 
                 switch response.result {
                 case .success(let tour):
-                
-                    self.detailTour = tour
                     completed(tour)
                 case .failure(let error):
                     print(error)
