@@ -24,7 +24,7 @@ extension Date {
         if let date = dateFormatter.date(from: date) {
 
             let formatter = DateFormatter()
-            formatter.dateFormat = "MMM d, h:mm a"
+            formatter.dateFormat = "dd.MM.yy HH:mm"
             return formatter.string(from: date)
         }
         return nil
