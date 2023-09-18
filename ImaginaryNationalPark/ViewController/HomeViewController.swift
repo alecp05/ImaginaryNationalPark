@@ -8,6 +8,8 @@
 import SnapKit
 import UIKit
 import BIFiOSUtils
+import AlamofireImage
+import Alamofire
 
 // /////////////////////////////////////////////////////////////////////////
 // MARK: - HomeViewController Delegate -
@@ -59,12 +61,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
     
     private lazy var dataSource: TourDataSource = self.configureDataSource()
-    
-    private var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        return formatter
-    }()
     
     private let repository: ApiRepository = ApiRepository()
     
@@ -148,13 +144,10 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             else { fatalError("Couldn't create TourCell") }
             
             // image
-            if let url = URL(string: tour.thumbnail) {
-                URLSession.shared.dataTask(with: url) { data, response, error in
-                    guard let imageData = data else { return }
-                    DispatchQueue.main.async {
-                        cell.thumbnail.image = UIImage(data: imageData)
-                    }
-                }.resume()
+            AF.request(tour.thumbnail).responseImage { response in
+                if let image = response.value {
+                    cell.thumbnail.image = image
+                }
             }
             
             cell.titleLabel.text = tour.title
@@ -162,7 +155,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             cell.descriptionLabel.text = tour.shortDescription
             
             // end Date
-            if let date = tour.formattedDate(using: self.dateFormatter, date: tour.endDate) {
+            if let date = tour.formattedDate(date: tour.endDate) {
                 cell.availableLabel.text = date
             }
             

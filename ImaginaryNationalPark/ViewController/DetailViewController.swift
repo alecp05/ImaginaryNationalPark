@@ -7,6 +7,8 @@
 
 import SnapKit
 import UIKit
+import Alamofire
+import AlamofireImage
 
 // /////////////////////////////////////////////////////////////////////////
 // MARK: - DetailViewController -
@@ -42,15 +44,9 @@ class DetailViewController: UIViewController {
     
     private var availableLabel: UILabel = UILabel()
     
-    private lazy var callView: UIView = UIView().configure { view in
+    private lazy var callView: UIView = CallView().configure { view in
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clickedAllTourButton)))
     }
-    
-    private var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        return formatter
-    }()
     
     var tour: Tour? {
         didSet {
@@ -173,20 +169,16 @@ class DetailViewController: UIViewController {
             self.titleLabel.text = tour.title
             self.descriptionLabel.text = tour.description
             
-            if let startDate = tour.formattedDate(using: self.dateFormatter, date: tour.startDate),
-               let endDate = (tour.formattedDate(using: self.dateFormatter, date: tour.endDate)) {
+            if let startDate = tour.formattedDate(date: tour.startDate),
+               let endDate = (tour.formattedDate(date: tour.endDate)) {
                 
                 self.availableLabel.text = "\(startDate) - \(endDate)"
             }
             
-            if let url = URL(string: tour.thumbnail) {
-                URLSession.shared.dataTask(with: url) { data, response, error in
-                    guard let imageData = data else { return }
-                    DispatchQueue.main.async {
-                        
-                        self.imageView.image = UIImage(data: imageData)
-                    }
-                }.resume()
+            AF.request(tour.thumbnail).responseImage { response in
+                if let image = response.value {
+                    self.imageView.image = image
+                }
             }
         }
     }
