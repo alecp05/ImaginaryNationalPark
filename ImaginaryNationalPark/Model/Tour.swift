@@ -21,6 +21,7 @@ struct Tour: Codable, Hashable {
     let shortDescription: String
     let description: String?
     let thumbnail: String
+    let image: String?
     let startDate: String
     let endDate: String
     let price: String
@@ -34,5 +35,6 @@ struct Tour: Codable, Hashable {
         case endDate
         case price
         case thumbnail = "thumb"
+        case image
     }
 }

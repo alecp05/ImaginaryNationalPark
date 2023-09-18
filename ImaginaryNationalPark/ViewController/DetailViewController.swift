@@ -175,9 +175,11 @@ class DetailViewController: UIViewController {
                 self.availableLabel.text = "\(startDate) - \(endDate)"
             }
             
-            AF.request(tour.thumbnail).responseImage { response in
-                if let image = response.value {
-                    self.imageView.image = image
+            if let image = tour.image {
+                AF.request(image).responseImage { response in
+                    if let image = response.value {
+                        self.imageView.image = image
+                    }
                 }
             }
         }
