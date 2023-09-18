@@ -44,8 +44,18 @@ class DetailViewController: UIViewController {
     
     private var availableLabel: UILabel = UILabel()
     
-    private lazy var callView: UIView = CallView().configure { view in
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(callButtonClicked)))
+    private lazy var callButton: UIButton = UIButton().configure { button in
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "phone")
+        configuration.title = "CALL TO BOOK"
+        configuration.imagePlacement = .leading
+        configuration.titleAlignment = .center
+        configuration.imagePadding = 20
+        
+        button.configuration = configuration
+        button.backgroundColor = .brown.withAlphaComponent(0.5)
+        button.addTarget(self, action: #selector(callButtonClicked), for: .touchUpInside)
+        button.tintColor = .black
     }
     
     var tour: Tour? {
@@ -92,7 +102,7 @@ class DetailViewController: UIViewController {
         self.containerView.addSubview(self.bookableLabel)
         self.containerView.addSubview(self.availableLabel)
         
-        self.view.addSubview(self.callView)
+        self.view.addSubview(self.callButton)
         
         self.makeConstraints()
     }
@@ -118,7 +128,7 @@ class DetailViewController: UIViewController {
             make.top.equalTo(self.imageView.snp.bottom).offset(16)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).inset(16)
             make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).inset(16)
-            make.bottom.equalTo(self.callView.snp.top)
+            make.bottom.equalTo(self.callButton.snp.top)
         }
         
         // in container
@@ -150,8 +160,9 @@ class DetailViewController: UIViewController {
         }
         //
         
-        self.callView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
+        self.callButton.snp.makeConstraints { make in
+            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(16)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).inset(16)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(10)
         }
     }
