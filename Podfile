@@ -12,6 +12,7 @@ target 'ImaginaryNationalPark' do
   pod 'Alamofire'
   pod 'SnapKit'
   pod 'BIFiOSUtils'
+  pod 'AlamofireImage'
 
 
   post_install do |installer|

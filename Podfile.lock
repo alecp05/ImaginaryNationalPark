@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (5.8.0)
+  - AlamofireImage (4.2.0):
+    - Alamofire (~> 5.4)
   - AlamofireObjectMapper (6.4.5):
     - Alamofire (~> 5.1)
     - ObjectMapper (~> 3.5.2)
@@ -77,6 +79,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AlamofireImage
   - BIFiOSUtils
   - SnapKit
 
@@ -86,6 +89,7 @@ SPEC REPOS:
     - BIFiOSUtils
     - ViewModel
   https://github.com/CocoaPods/Specs.git:
+    - AlamofireImage
     - DeviceKit
     - DiffableDataSources
     - DifferenceKit
@@ -102,6 +106,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
+  AlamofireImage: 34a2d90b0e5fe6a5605f85ae4b7b01e784c60192
   AlamofireObjectMapper: 3eeba2c19a741da4adbf225fa059cb74caee521c
   BIFiOSUtils: d3f8154be4744131a4f1cf4d9b83d1eabfcb5600
   DeviceKit: 0fd016a2cb67aca17c33dc23171cac270131eb88
@@ -117,6 +122,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 63f80248cf5bfb3458825d9a78f2eb7e1293a040
   ViewModel: f202e4fc3a2ec936be5479b04dfe40fdbd86e83d
 
-PODFILE CHECKSUM: d03a637b63b5a1bce8a8d58eb0e56f170bfbf498
+PODFILE CHECKSUM: 338466ecaaf30fc3e96d11b35f89405710fdf3de
 
 COCOAPODS: 1.12.1
