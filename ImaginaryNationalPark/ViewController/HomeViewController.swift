@@ -39,8 +39,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(clickedAllTourButton), for: .touchUpInside)
         button.backgroundColor = .brown
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.white.cgColor
     }
     
     private lazy var topFiveButton: UIButton = UIButton().configure { button in
@@ -48,8 +46,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(clickedTopFiveButton), for: .touchUpInside)
         button.backgroundColor = .brown
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.white.cgColor
     }
     
     private lazy var tableView: UITableView = UITableView().configure { tableView in 
@@ -98,15 +94,15 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         
         self.allTourButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
+            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).inset(1)
             make.height.equalTo(50)
             make.width.equalTo(self.view.safeAreaLayoutGuide.snp.width).dividedBy(2)
         }
         
         self.topFiveButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.leading.equalTo(self.allTourButton.snp.trailing)
-            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
+            make.leading.equalTo(self.allTourButton.snp.trailing).offset(1)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).inset(1)
             make.height.equalTo(50)
         }
         
