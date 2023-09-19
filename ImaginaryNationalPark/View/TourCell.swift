@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import BIFiOSUtils
+import Alamofire
+import AlamofireImage
 
 // /////////////////////////////////////////////////////////////////////////
 // MARK: - TourCell -
 // /////////////////////////////////////////////////////////////////////////
 
-class TourCell: UITableViewCell {
+class TourCell: UITableViewCell, ViewBinding {
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
@@ -56,6 +59,8 @@ class TourCell: UITableViewCell {
         self.containerView.addSubview(self.availableLabel)
         
         self.containerView.backgroundColor = .brown.withAlphaComponent(0.5)
+        
+        self.selectionStyle = .none
         
         self.makeConstraints()
     }
@@ -111,6 +116,43 @@ class TourCell: UITableViewCell {
             make.top.equalTo(self.descriptionLabel.snp.bottom).offset(5)
             make.leading.equalTo(self.thumbnail.snp.trailing).offset(10)
             make.trailing.bottom.equalToSuperview().inset(10)
+        }
+    }
+    
+    // /////////////////////////////////////////////////////////////////////////
+    // MARK: - ViewBinding
+    // /////////////////////////////////////////////////////////////////////////
+    
+    override func prepareForReuse() {
+        self.thumbnail.image = nil
+        self.titleLabel.text = nil
+        self.descriptionLabel.text = nil
+        self.priceLabel.text = nil
+        self.availableLabel.text = nil
+    }
+    
+    func bind<T>(withModel model: T) {
+        
+        if let tour = model as? Tour {
+            // image
+            AF.request(tour.thumbnail).responseImage { response in
+                if let image = response.value {
+                    self.thumbnail.image = image
+                }
+            }
+            
+            self.titleLabel.text = tour.title
+            self.descriptionLabel.text = tour.shortDescription
+            
+            // price
+            if let price = NumberFormatter().formattedPrice(price: tour.price) {
+                self.priceLabel.text = "PRICE: \(price)"
+            }
+            
+            // end Date
+            if let date = Date().formattedDate(date: tour.endDate) {
+                self.availableLabel.text = date
+            }
         }
     }
 }

@@ -134,31 +134,11 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     func configureDataSource() -> TourDataSource {
         return TourDataSource(tableView: self.tableView) { tableView, indexPath, tour -> UITableViewCell in
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TourCell.reuseIdentifier, for: indexPath) as? TourCell
-            else { fatalError("Couldn't create TourCell") }
+            let cell = tableView.dequeueReusableCell(withIdentifier: TourCell.reuseIdentifier, for: indexPath)
             
-            // image
-            AF.request(tour.thumbnail).responseImage { response in
-                if let image = response.value {
-                    cell.thumbnail.image = image
-                }
+            if let viewBinding = cell as? ViewBinding {
+                viewBinding.bind(withModel: tour)
             }
-            
-            cell.titleLabel.text = tour.title
-            cell.descriptionLabel.text = tour.shortDescription
-            
-            // price
-            if let price = NumberFormatter().formattedPrice(price: tour.price) {
-                cell.priceLabel.text = "PRICE: \(price)"
-            }
-            
-            // end Date
-            if let date = Date().formattedDate(date: tour.endDate) {
-                cell.availableLabel.text = date
-            }
-            
-            cell.selectionStyle = .none
-            
             return cell
         }
     }
