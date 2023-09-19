@@ -40,7 +40,9 @@ class EmptyViewController: UIViewController {
         
         self.logoImageView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(20)
-            make.leading.trailing.bottom.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().offset(20)
+            make.bottom.equalToSuperview().inset(20)
         }
     }
 }
