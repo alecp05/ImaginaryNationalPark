@@ -104,7 +104,7 @@
 				701CD1092AAF41B0004F2572 /* View */,
 				701CD1082AAF41AB004F2572 /* Extensions */,
 				701CD1072AAF418A004F2572 /* Model */,
-				701CD1062AAF4173004F2572 /* Database */,
+				701CD1062AAF4173004F2572 /* DataSource */,
 				701CD1052AAF4167004F2572 /* ApplicationDelegates */,
 				701CD0FA2AAF3915004F2572 /* Assets.xcassets */,
 				701CD0FF2AAF3915004F2572 /* Info.plist */,
@@ -121,12 +121,12 @@
 			path = ApplicationDelegates;
 			sourceTree = "<group>";
 		};
-		701CD1062AAF4173004F2572 /* Database */ = {
+		701CD1062AAF4173004F2572 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
 				709967252AB05BF800148960 /* TourDataSource.swift */,
 			);
-			path = Database;
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		701CD1072AAF418A004F2572 /* Model */ = {
