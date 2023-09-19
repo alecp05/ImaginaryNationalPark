@@ -1,3 +1,3 @@
 --swiftversion 5
---exclude Pods
+--exclude Pods,**/Generated
 --disable duplicateImports,blankLinesAroundMark,redundantType,redundantReturn,wrapMultilineStatementBraces,redundantSelf,trailingClosures,blankLinesAtStartOfScope,unusedArguments,hoistPatternLet,trailingSpace,trailingCommas
