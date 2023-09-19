@@ -20,6 +20,8 @@
 		702A3A782AB1C3F7009940E4 /* CustomSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702A3A772AB1C3F7009940E4 /* CustomSplitViewController.swift */; };
 		705A0C6D2AB312C600626BD1 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705A0C6C2AB312C600626BD1 /* EmptyViewController.swift */; };
 		707B4A362AB999D000C371A6 /* NumberFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B4A352AB999D000C371A6 /* NumberFormatterExtension.swift */; };
+		707B4A382AB9B89100C371A6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B4A372AB9B89100C371A6 /* Service.swift */; };
+		707B4A3A2AB9BABF00C371A6 /* TourProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B4A392AB9BABF00C371A6 /* TourProvider.swift */; };
 		709967262AB05BF800148960 /* TourDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709967252AB05BF800148960 /* TourDataSource.swift */; };
 		709967282AB05C1F00148960 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709967272AB05C1F00148960 /* Selection.swift */; };
 		7099672A2AB05E8F00148960 /* TourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709967292AB05E8F00148960 /* TourCell.swift */; };
@@ -44,6 +46,8 @@
 		702A3A772AB1C3F7009940E4 /* CustomSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSplitViewController.swift; sourceTree = "<group>"; };
 		705A0C6C2AB312C600626BD1 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		707B4A352AB999D000C371A6 /* NumberFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtension.swift; sourceTree = "<group>"; };
+		707B4A372AB9B89100C371A6 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		707B4A392AB9BABF00C371A6 /* TourProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourProvider.swift; sourceTree = "<group>"; };
 		709967252AB05BF800148960 /* TourDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourDataSource.swift; sourceTree = "<group>"; };
 		709967272AB05C1F00148960 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 		709967292AB05E8F00148960 /* TourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCell.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				701CD10B2AAF623C004F2572 /* ApiRepository.swift */,
+				707B4A372AB9B89100C371A6 /* Service.swift */,
+				707B4A392AB9BABF00C371A6 /* TourProvider.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -307,6 +313,8 @@
 				701CD0F42AAF3915004F2572 /* SceneDelegate.swift in Sources */,
 				701CD1112AAF69EE004F2572 /* Request.swift in Sources */,
 				709967282AB05C1F00148960 /* Selection.swift in Sources */,
+				707B4A382AB9B89100C371A6 /* Service.swift in Sources */,
+				707B4A3A2AB9BABF00C371A6 /* TourProvider.swift in Sources */,
 				707B4A362AB999D000C371A6 /* NumberFormatterExtension.swift in Sources */,
 				702A3A782AB1C3F7009940E4 /* CustomSplitViewController.swift in Sources */,
 				7099672C2AB094C200148960 /* DetailViewController.swift in Sources */,
