@@ -120,13 +120,11 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @objc
     func clickedAllTourButton() {
         self.dataSource.update(requestType: .allTours, repository: self.repository)
-        self.tableView.reloadData()
     }
     
     @objc
     func clickedTopFiveButton() {
         self.dataSource.update(requestType: .topFive, repository: self.repository)
-        self.tableView.reloadData()
     }
     
     // /////////////////////////////////////////////////////////////////////////
