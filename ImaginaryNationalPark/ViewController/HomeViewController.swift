@@ -145,8 +145,12 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             }
             
             cell.titleLabel.text = tour.title
-            cell.priceLabel.text = "PRICE: \(tour.price)0€"
             cell.descriptionLabel.text = tour.shortDescription
+            
+            // price
+            if let price = NumberFormatter().formattedPrice(price: tour.price) {
+                cell.priceLabel.text = "PRICE: \(price)"
+            }
             
             // end Date
             if let date = Date().formattedDate(date: tour.endDate) {
