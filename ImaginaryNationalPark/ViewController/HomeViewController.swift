@@ -96,7 +96,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).inset(1)
             make.height.equalTo(50)
-            make.width.equalTo(self.view.safeAreaLayoutGuide.snp.width).dividedBy(2)
+            make.width.equalTo(self.topFiveButton.snp.width)
         }
         
         self.topFiveButton.snp.makeConstraints { make in
