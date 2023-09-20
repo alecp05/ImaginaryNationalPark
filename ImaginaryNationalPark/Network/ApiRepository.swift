@@ -15,30 +15,23 @@ import Foundation
 class ApiRepository {
     
     // /////////////////////////////////////////////////////////////////////////
-    // MARK: - Properties
-    
-    private let headers: HTTPHeaders = [.accept("application/json")]
-    
-    // /////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     
-    func getTours(type: Request, completed: @escaping ([Tour]) -> Void) {
-        
-        AF.request(type.value, headers: self.headers)
+    func getTours(service: Service, completed: @escaping ([Tour]) -> Void) {
+        AF.request(service)
             .responseDecodable(of: [Tour].self) { response in
-                
-                switch response.result {
-                case .success(let tours):
-                    completed(tours)
-                case .failure(let error):
-                    print(error)
-                }
+            
+            switch response.result {
+            case .success(let tours):
+                completed(tours)
+            case .failure(let error):
+                print(error)
             }
+        }
     }
     
     func getTourWithID(id: Int, completed: @escaping (Tour) -> Void) {
-        
-        AF.request(Request.tourDetail(id).value, headers: self.headers)
+        AF.request(Service.tourDetail(id))
             .responseDecodable(of: Tour.self) { response in
                 
                 switch response.result {
@@ -51,7 +44,7 @@ class ApiRepository {
     }
     
     func getContactInfo(completed: @escaping (Contact) -> Void) {
-        AF.request(Request.contact.value, headers: self.headers)
+        AF.request(Service.contact)
             .responseDecodable(of: Contact.self) { response in
                 
                 switch response.result {

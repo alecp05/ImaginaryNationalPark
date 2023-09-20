@@ -76,7 +76,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: self.imageLogo)
         
         // tableView
-        self.dataSource.update(requestType: .allTours, repository: self.repository)
+        self.dataSource.update(service: Service.allTours, repository: self.repository)
         
         // subviews
         self.view.addSubview(self.allTourButton)
@@ -119,12 +119,12 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     @objc
     func clickedAllTourButton() {
-        self.dataSource.update(requestType: .allTours, repository: self.repository)
+        self.dataSource.update(service: Service.allTours, repository: self.repository)
     }
     
     @objc
     func clickedTopFiveButton() {
-        self.dataSource.update(requestType: .topFive, repository: self.repository)
+        self.dataSource.update(service: Service.topFive, repository: self.repository)
     }
     
     // /////////////////////////////////////////////////////////////////////////
