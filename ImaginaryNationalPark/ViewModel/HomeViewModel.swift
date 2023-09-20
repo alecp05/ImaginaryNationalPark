@@ -21,6 +21,7 @@ class HomeViewModel: ViewModel {
     
     private let repository: ApiRepository = ApiRepository()
     let tours: BehaviorRelay<[Tour]> = BehaviorRelay<[Tour]>(value: [])
+    var tour: Tour?
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Life Cycle
@@ -38,6 +39,13 @@ class HomeViewModel: ViewModel {
         self.repository.getTours(service: service, completed: { tours in
             
             self.tours.accept(tours)
+        })
+    }
+    
+    func getTourWithId(id: Int, completion: @escaping (Tour) -> Void ) {
+        self.repository.getTourWithID(id: id, completed: { tour in
+
+            completion(tour)
         })
     }
 }

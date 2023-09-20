@@ -49,7 +49,7 @@ class HomeViewController: ViewModelViewController<HomeViewModel>, UITableViewDel
         button.backgroundColor = .brown
     }
     
-    private lazy var tableView: UITableView = UITableView().configure { tableView in 
+    private lazy var tableView: UITableView = UITableView().configure { tableView in
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.sectionHeaderTopPadding = 0
         tableView.estimatedRowHeight = 120
@@ -159,12 +159,12 @@ class HomeViewController: ViewModelViewController<HomeViewModel>, UITableViewDel
         
         if let tour = self.dataSource.itemIdentifier(for: indexPath) {
             
-            self.repository.getTourWithID(id: tour.id, completed: { tour in
+            self.viewModel.getTourWithId(id: tour.id, completion: { tour in
                 
                 if UIScreen.main.bounds.width > UIScreen.main.bounds.height || UIDevice.current.userInterfaceIdiom == .pad {
                     self.delegate?.didSelectTour(tour: tour)
                 } else {
-                    let controller = DetailViewController(repository: self.repository)
+                    let controller = DetailViewController(viewModel: DetailViewModel())
                     controller.tour = tour
                     self.navigationController?.pushViewController(controller, animated: true)
                 }
