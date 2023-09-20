@@ -16,19 +16,12 @@ class TourDataSource: UITableViewDiffableDataSource<Section, Tour> {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     
-    // TODO: remove ApiLogic here and move it to ViewModel when refactoring to MVVM
-    
-    func update(service: Service, repository: ApiRepository) {
+    func update(tours: [Tour]) {
         
-        repository.getTours(service: service, completed: { tours in
-            
-            var newSnapshot = NSDiffableDataSourceSnapshot<Section, Tour>()
-            
-            newSnapshot.appendSections(Section.allCases)
-            
-            newSnapshot.appendItems(tours, toSection: .main)
-            
-            self.apply(newSnapshot, animatingDifferences: false)
-        })
+        var newSnapshot = NSDiffableDataSourceSnapshot<Section, Tour>()
+        newSnapshot.appendSections(Section.allCases)
+        newSnapshot.appendItems(tours, toSection: .main)
+        
+        self.apply(newSnapshot, animatingDifferences: false)
     }
 }

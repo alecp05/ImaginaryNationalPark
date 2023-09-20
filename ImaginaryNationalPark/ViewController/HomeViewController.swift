@@ -10,6 +10,7 @@ import AlamofireImage
 import BIFiOSUtils
 import SnapKit
 import UIKit
+import ViewModel
 
 // /////////////////////////////////////////////////////////////////////////
 // MARK: - HomeViewController Delegate -
@@ -23,7 +24,7 @@ protocol HomeViewControllerDelegate: NSObjectProtocol {
 // MARK: - HomeViewController -
 // /////////////////////////////////////////////////////////////////////////
 
-class HomeViewController: UIViewController, UITableViewDelegate {
+class HomeViewController: ViewModelViewController<HomeViewModel>, UITableViewDelegate {
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
@@ -75,15 +76,13 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         // navigation
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: self.imageLogo)
         
-        // tableView
-        self.dataSource.update(service: Service.allTours, repository: self.repository)
-        
         // subviews
         self.view.addSubview(self.allTourButton)
         self.view.addSubview(self.topFiveButton)
         self.view.addSubview(self.tableView)
         
         self.makeConstraints()
+        self.rxUpdates()
     }
     
     func makeConstraints() {
@@ -117,14 +116,23 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     
+    func rxUpdates() {
+        self.viewModel.tours
+            .asObservable()
+            .subscribe(onNext: { items in
+                self.dataSource.update(tours: items)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
     @objc
     func clickedAllTourButton() {
-        self.dataSource.update(service: Service.allTours, repository: self.repository)
+        self.viewModel.getTours(service: Service.allTours)
     }
     
     @objc
     func clickedTopFiveButton() {
-        self.dataSource.update(service: Service.topFive, repository: self.repository)
+        self.viewModel.getTours(service: Service.topFive)
     }
     
     // /////////////////////////////////////////////////////////////////////////
