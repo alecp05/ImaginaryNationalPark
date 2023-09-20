@@ -26,6 +26,7 @@
 		7099672C2AB094C200148960 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7099672B2AB094C200148960 /* DetailViewController.swift */; };
 		70F958972ABAE1D70079A414 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F958962ABAE1D70079A414 /* Configuration.swift */; };
 		70F9589A2ABB04AF0079A414 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F958992ABB04AF0079A414 /* HomeViewModel.swift */; };
+		70F9589C2ABB33FD0079A414 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F9589B2ABB33FD0079A414 /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		7099672B2AB094C200148960 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		70F958962ABAE1D70079A414 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		70F958992ABB04AF0079A414 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		70F9589B2ABB33FD0079A414 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				70F958992ABB04AF0079A414 /* HomeViewModel.swift */,
+				70F9589B2ABB33FD0079A414 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				707B4A362AB999D000C371A6 /* NumberFormatterExtension.swift in Sources */,
 				70F958972ABAE1D70079A414 /* Configuration.swift in Sources */,
 				702A3A782AB1C3F7009940E4 /* CustomSplitViewController.swift in Sources */,
+				70F9589C2ABB33FD0079A414 /* DetailViewModel.swift in Sources */,
 				7099672C2AB094C200148960 /* DetailViewController.swift in Sources */,
 				705A0C6D2AB312C600626BD1 /* EmptyViewController.swift in Sources */,
 				701CD10E2AAF6469004F2572 /* Tour.swift in Sources */,
