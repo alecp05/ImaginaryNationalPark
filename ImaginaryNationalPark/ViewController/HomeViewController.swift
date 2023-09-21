@@ -59,8 +59,6 @@ class HomeViewController: ViewModelViewController<HomeViewModel>, UITableViewDel
     
     private lazy var dataSource: TourDataSource = self.configureDataSource()
     
-    private let repository: ApiRepository = ApiRepository()
-    
     weak var delegate: HomeViewControllerDelegate?
     
     // /////////////////////////////////////////////////////////////////////////

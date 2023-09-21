@@ -21,7 +21,6 @@ class HomeViewModel: ViewModel {
     
     private let repository: ApiRepository = ApiRepository()
     let tours: BehaviorRelay<[Tour]> = BehaviorRelay<[Tour]>(value: [])
-    var tour: Tour?
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Life Cycle
