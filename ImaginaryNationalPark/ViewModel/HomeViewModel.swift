@@ -21,13 +21,12 @@ class HomeViewModel: ViewModel {
     
     private let repository: ApiRepository = ApiRepository()
     let tours: BehaviorRelay<[Tour]> = BehaviorRelay<[Tour]>(value: [])
-    
+     
     // /////////////////////////////////////////////////////////////////////////
-    // MARK: - Life Cycle
-    
-    override init() {
-        super.init()
-        
+    // MARK: - ViewModel
+    // /////////////////////////////////////////////////////////////////////////
+
+    override func didBecomeActive() {
         self.getTours(service: Service.allTours)
     }
     
@@ -38,13 +37,6 @@ class HomeViewModel: ViewModel {
         self.repository.getTours(service: service, completed: { tours in
             
             self.tours.accept(tours)
-        })
-    }
-    
-    func getTourWithId(id: Int, completion: @escaping (Tour) -> Void ) {
-        self.repository.getTourWithID(id: id, completed: { tour in
-
-            completion(tour)
         })
     }
 }

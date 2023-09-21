@@ -13,14 +13,6 @@ import UIKit
 import ViewModel
 
 // /////////////////////////////////////////////////////////////////////////
-// MARK: - HomeViewController Delegate -
-// /////////////////////////////////////////////////////////////////////////
-
-protocol HomeViewControllerDelegate: NSObjectProtocol {
-    func didSelectTour(tour: Tour)
-}
-
-// /////////////////////////////////////////////////////////////////////////
 // MARK: - HomeViewController -
 // /////////////////////////////////////////////////////////////////////////
 
@@ -58,8 +50,6 @@ class HomeViewController: ViewModelViewController<HomeViewModel>, UITableViewDel
     }
     
     private lazy var dataSource: TourDataSource = self.configureDataSource()
-    
-    weak var delegate: HomeViewControllerDelegate?
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - HomeViewController
@@ -157,16 +147,13 @@ class HomeViewController: ViewModelViewController<HomeViewModel>, UITableViewDel
         
         if let tour = self.dataSource.itemIdentifier(for: indexPath) {
             
-            self.viewModel.getTourWithId(id: tour.id, completion: { tour in
-                
-                if UIScreen.main.bounds.width > UIScreen.main.bounds.height || UIDevice.current.userInterfaceIdiom == .pad {
-                    self.delegate?.didSelectTour(tour: tour)
-                } else {
-                    let controller = DetailViewController(viewModel: DetailViewModel())
-                    controller.tour = tour
-                    self.navigationController?.pushViewController(controller, animated: true)
-                }
-            })
+            let controller = DetailViewController(viewModel: DetailViewModel(tour: tour))
+            
+            if UIScreen.main.bounds.width > UIScreen.main.bounds.height || UIDevice.current.userInterfaceIdiom == .pad {
+                self.splitViewController?.showDetailViewController(controller, sender: self)
+            } else {
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
         }
     }
 }
