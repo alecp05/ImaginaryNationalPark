@@ -9,12 +9,13 @@ import Alamofire
 import AlamofireImage
 import SnapKit
 import UIKit
+import ViewModel
 
 // /////////////////////////////////////////////////////////////////////////
 // MARK: - DetailViewController -
 // /////////////////////////////////////////////////////////////////////////
 
-class DetailViewController: UIViewController {
+class DetailViewController: ViewModelViewController<DetailViewModel> {
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
@@ -62,22 +63,6 @@ class DetailViewController: UIViewController {
         didSet {
             self.updateTour()
         }
-    }
-    
-    var repository: ApiRepository
-    
-    // /////////////////////////////////////////////////////////////////////////
-    // MARK: - Life Cycle
-    
-    init(repository: ApiRepository) {
-        self.repository = repository
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // /////////////////////////////////////////////////////////////////////////
@@ -193,8 +178,8 @@ class DetailViewController: UIViewController {
     
     @objc
     func callButtonClicked() {
-        self.repository.getContactInfo(completed: { contact in
-            
+        
+        self.viewModel.getContactInfo(completion: { contact in
             let alert = UIAlertController(title: contact.companyName, message: contact.phone, preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
