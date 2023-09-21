@@ -151,31 +151,29 @@ class DetailViewController: ViewModelViewController<DetailViewModel> {
         self.viewModel.tour
             .asObservable()
             .subscribe(onNext: { tour in
-                if let tour = tour {
-                    self.updateTour(tour: tour)
-                }
+                self.updateTour(tour: tour)
             })
             .disposed(by: self.disposeBag)
     }
     
     func updateTour(tour: Tour) {
-            self.title = tour.title
-            self.titleLabel.text = tour.title
-            self.descriptionLabel.text = tour.description
+        self.title = tour.title
+        self.titleLabel.text = tour.title
+        self.descriptionLabel.text = tour.description
+        
+        if let startDate = Date().formattedDate(date: tour.startDate),
+           let endDate = Date().formattedDate(date: tour.endDate) {
             
-            if let startDate = Date().formattedDate(date: tour.startDate),
-               let endDate = Date().formattedDate(date: tour.endDate) {
-                
-                self.availableLabel.text = "\(startDate) - \(endDate)"
-            }
-            
-            if let image = tour.image {
-                AF.request(image).responseImage { response in
-                    if let image = response.value {
-                        self.imageView.image = image
-                    }
+            self.availableLabel.text = "\(startDate) - \(endDate)"
+        }
+        
+        if let image = tour.image {
+            AF.request(image).responseImage { response in
+                if let image = response.value {
+                    self.imageView.image = image
                 }
             }
+        }
     }
     
     @objc

@@ -20,15 +20,14 @@ class DetailViewModel: ViewModel {
     // MARK: - Properties
     
     private let repository: ApiRepository = ApiRepository()
-    var tour: BehaviorRelay<Tour?> = BehaviorRelay<Tour?>(value: nil)
+    let tour: BehaviorRelay<Tour>
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Life Cycle
     
     init(tour: Tour) {
+        self.tour = BehaviorRelay(value: tour)
         super.init()
-        
-        self.tour.accept(tour)
     }
     
     // /////////////////////////////////////////////////////////////////////////
@@ -36,11 +35,10 @@ class DetailViewModel: ViewModel {
     // /////////////////////////////////////////////////////////////////////////
     
     override func didBecomeActive() {
-        if let tourId = self.tour.value?.id {
-            self.repository.getTourWithID(id: tourId, completed: { tour in
-                self.tour.accept(tour)
-            })
-        }
+        
+        self.repository.getTourWithID(id: self.tour.value.id, completed: { tour in
+            self.tour.accept(tour)
+        })
     }
     
     // /////////////////////////////////////////////////////////////////////////
@@ -49,7 +47,6 @@ class DetailViewModel: ViewModel {
     func getContactInfo(completion: @escaping (Contact) -> Void ) {
         
         self.repository.getContactInfo(completed: { contact in
-            
             completion(contact)
         })
     }
