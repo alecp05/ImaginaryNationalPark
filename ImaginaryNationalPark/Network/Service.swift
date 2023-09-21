@@ -50,7 +50,7 @@ enum Service: ServiceProtocol {
     
     var method: HTTPMethod {
         switch self {
-        case .allTours, .topFive, .tourDetail(_), .contact:
+        case .allTours, .topFive, .tourDetail, .contact:
             return .get
         }
     }
