@@ -11,17 +11,13 @@ import UIKit
 // MARK: - CustomSplitViewController -
 // /////////////////////////////////////////////////////////////////////////
 
-class CustomSplitViewController: UISplitViewController, UISplitViewControllerDelegate, HomeViewControllerDelegate {
+class CustomSplitViewController: UISplitViewController, UISplitViewControllerDelegate {
     
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
     
-    private lazy var homeViewController = HomeViewController(viewModel: HomeViewModel()).configure { controller in
-        controller.delegate = self
-    }
-    
+    private lazy var homeViewController = HomeViewController(viewModel: HomeViewModel())
     private lazy var homeNavigationController = UINavigationController(rootViewController: self.homeViewController)
-    private let detailViewController = DetailViewController(viewModel: DetailViewModel())
     private let emptyViewController = EmptyViewController()
     
     // /////////////////////////////////////////////////////////////////////////
@@ -58,14 +54,5 @@ class CustomSplitViewController: UISplitViewController, UISplitViewControllerDel
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         return true
-    }
-    
-    // /////////////////////////////////////////////////////////////////////////
-    // MARK: - HomeViewController
-    // /////////////////////////////////////////////////////////////////////////
-    
-    func didSelectTour(tour: Tour) {
-        self.detailViewController.tour = tour
-        self.showDetailViewController(self.detailViewController, sender: self)
     }
 }
