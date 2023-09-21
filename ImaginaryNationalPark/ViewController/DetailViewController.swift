@@ -59,12 +59,6 @@ class DetailViewController: ViewModelViewController<DetailViewModel> {
         button.tintColor = .black
     }
     
-    var tour: Tour? {
-        didSet {
-            self.updateTour()
-        }
-    }
-    
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - HomeViewController
     // /////////////////////////////////////////////////////////////////////////
@@ -73,8 +67,6 @@ class DetailViewController: ViewModelViewController<DetailViewModel> {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
-        
-        self.updateTour()
         
         // subviews
         self.view.addSubview(self.imageView)
@@ -89,6 +81,7 @@ class DetailViewController: ViewModelViewController<DetailViewModel> {
         self.view.addSubview(self.callButton)
         
         self.makeConstraints()
+        self.rxUpdates()
     }
     
     func makeConstraints() {
@@ -154,8 +147,18 @@ class DetailViewController: ViewModelViewController<DetailViewModel> {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Functions
     
-    func updateTour() {
-        if let tour = self.tour {
+    func rxUpdates() {
+        self.viewModel.tour
+            .asObservable()
+            .subscribe(onNext: { tour in
+                if let tour = tour {
+                    self.updateTour(tour: tour)
+                }
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    func updateTour(tour: Tour) {
             self.title = tour.title
             self.titleLabel.text = tour.title
             self.descriptionLabel.text = tour.description
@@ -173,7 +176,6 @@ class DetailViewController: ViewModelViewController<DetailViewModel> {
                     }
                 }
             }
-        }
     }
     
     @objc
