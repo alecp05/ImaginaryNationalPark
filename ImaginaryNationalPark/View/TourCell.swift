@@ -135,10 +135,8 @@ class TourCell: UITableViewCell, ViewBinding {
         
         if let tour = model as? Tour {
             // image
-            AF.request(tour.thumbnail).responseImage { response in
-                if let image = response.value {
-                    self.thumbnail.image = image
-                }
+            if let url = URL(string: tour.thumbnail) {
+                self.thumbnail.af.setImage(withURL: url)
             }
             
             self.titleLabel.text = tour.title

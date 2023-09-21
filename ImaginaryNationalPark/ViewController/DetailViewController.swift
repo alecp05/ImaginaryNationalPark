@@ -167,12 +167,8 @@ class DetailViewController: ViewModelViewController<DetailViewModel> {
             self.availableLabel.text = "\(startDate) - \(endDate)"
         }
         
-        if let image = tour.image {
-            AF.request(image).responseImage { response in
-                if let image = response.value {
-                    self.imageView.image = image
-                }
-            }
+        if let image = tour.image , let url = URL(string: image) {
+            self.imageView.af.setImage(withURL: url)
         }
     }
     
