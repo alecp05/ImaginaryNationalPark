@@ -26,6 +26,8 @@
 		7099672C2AB094C200148960 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7099672B2AB094C200148960 /* DetailViewController.swift */; };
 		70C232DC2ABC881D00B5E93B /* TourDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C232DB2ABC881D00B5E93B /* TourDTO.swift */; };
 		70C232DE2ABC882700B5E93B /* ContactDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C232DD2ABC882700B5E93B /* ContactDTO.swift */; };
+		70C232E12ABD8CB800B5E93B /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C232E02ABD8CB800B5E93B /* Route.swift */; };
+		70C232E32ABD940100B5E93B /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C232E22ABD940100B5E93B /* Navigator.swift */; };
 		70F958972ABAE1D70079A414 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F958962ABAE1D70079A414 /* Configuration.swift */; };
 		70F9589A2ABB04AF0079A414 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F958992ABB04AF0079A414 /* HomeViewModel.swift */; };
 		70F9589C2ABB33FD0079A414 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F9589B2ABB33FD0079A414 /* DetailViewModel.swift */; };
@@ -55,6 +57,8 @@
 		7099672B2AB094C200148960 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		70C232DB2ABC881D00B5E93B /* TourDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourDTO.swift; sourceTree = "<group>"; };
 		70C232DD2ABC882700B5E93B /* ContactDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDTO.swift; sourceTree = "<group>"; };
+		70C232E02ABD8CB800B5E93B /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		70C232E22ABD940100B5E93B /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		70F958962ABAE1D70079A414 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		70F958992ABB04AF0079A414 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		70F9589B2ABB33FD0079A414 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 		701CD0F02AAF3915004F2572 /* ImaginaryNationalPark */ = {
 			isa = PBXGroup;
 			children = (
+				70C232DF2ABD8CAD00B5E93B /* Navigation */,
 				70F958982ABB02C80079A414 /* ViewModel */,
 				7018B2CB2AB86A2A00EDAC37 /* Network */,
 				701CD10F2AAF69DF004F2572 /* Utilities */,
@@ -197,6 +202,15 @@
 				70C232DD2ABC882700B5E93B /* ContactDTO.swift */,
 			);
 			path = DTO;
+			sourceTree = "<group>";
+		};
+		70C232DF2ABD8CAD00B5E93B /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				70C232E02ABD8CB800B5E93B /* Route.swift */,
+				70C232E22ABD940100B5E93B /* Navigator.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		70F958982ABB02C80079A414 /* ViewModel */ = {
@@ -334,6 +348,7 @@
 				702A3A702AB0C469009940E4 /* DateExtension.swift in Sources */,
 				709967262AB05BF800148960 /* TourDataSource.swift in Sources */,
 				701CD0F62AAF3915004F2572 /* HomeViewController.swift in Sources */,
+				70C232E32ABD940100B5E93B /* Navigator.swift in Sources */,
 				7099672A2AB05E8F00148960 /* TourCell.swift in Sources */,
 				701CD0F22AAF3915004F2572 /* AppDelegate.swift in Sources */,
 				701CD0F42AAF3915004F2572 /* SceneDelegate.swift in Sources */,
@@ -341,6 +356,7 @@
 				709967282AB05C1F00148960 /* Selection.swift in Sources */,
 				707B4A382AB9B89100C371A6 /* Service.swift in Sources */,
 				707B4A362AB999D000C371A6 /* NumberFormatterExtension.swift in Sources */,
+				70C232E12ABD8CB800B5E93B /* Route.swift in Sources */,
 				70F958972ABAE1D70079A414 /* Configuration.swift in Sources */,
 				702A3A782AB1C3F7009940E4 /* CustomSplitViewController.swift in Sources */,
 				70F9589C2ABB33FD0079A414 /* DetailViewModel.swift in Sources */,
