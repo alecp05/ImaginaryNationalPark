@@ -152,7 +152,7 @@ class HomeViewController: ViewModelViewController<HomeViewModel>, UITableViewDel
             if UIScreen.main.bounds.width > UIScreen.main.bounds.height || UIDevice.current.userInterfaceIdiom == .pad {
                 self.splitViewController?.showDetailViewController(controller, sender: self)
             } else {
-                self.navigationController?.pushViewController(controller, animated: true)
+                self.route(to: Route.detail(tour))
             }
         }
     }
