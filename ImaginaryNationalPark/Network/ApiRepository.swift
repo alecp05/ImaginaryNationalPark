@@ -19,11 +19,11 @@ class ApiRepository {
     
     func getTours(service: Service, completed: @escaping ([Tour]) -> Void) {
         AF.request(service)
-            .responseDecodable(of: [Tour].self) { response in
+            .responseDecodable(of: [TourDTO].self) { response in
             
             switch response.result {
             case .success(let tours):
-                completed(tours)
+                completed(tours.map({ $0.toObject() }))
             case .failure(let error):
                 print(error)
             }
@@ -32,11 +32,11 @@ class ApiRepository {
     
     func getTourWithID(id: Int, completed: @escaping (Tour) -> Void) {
         AF.request(Service.tourDetail(id))
-            .responseDecodable(of: Tour.self) { response in
+            .responseDecodable(of: TourDTO.self) { response in
                 
                 switch response.result {
                 case .success(let tour):
-                    completed(tour)
+                    completed(tour.toObject())
                 case .failure(let error):
                     print(error)
                 }
@@ -45,11 +45,11 @@ class ApiRepository {
     
     func getContactInfo(completed: @escaping (Contact) -> Void) {
         AF.request(Service.contact)
-            .responseDecodable(of: Contact.self) { response in
+            .responseDecodable(of: ContactDTO.self) { response in
                 
                 switch response.result {
                 case .success(let contact):
-                    completed(contact)
+                    completed(contact.toObject())
                 case .failure(let error):
                     print(error)
                 }

@@ -11,7 +11,7 @@ import UIKit
 // MARK: - Tour -
 // /////////////////////////////////////////////////////////////////////////
 
-struct Tour: Codable, Hashable {
+struct Tour: Hashable {
 
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Properties
@@ -25,16 +25,4 @@ struct Tour: Codable, Hashable {
     let startDate: String
     let endDate: String
     let price: String
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case title
-        case shortDescription
-        case description
-        case startDate
-        case endDate
-        case price
-        case thumbnail = "thumb"
-        case image
-    }
 }
