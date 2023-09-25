@@ -12,21 +12,10 @@ import UIKit
 // /////////////////////////////////////////////////////////////////////////
 
 extension Date {
-
-    // /////////////////////////////////////////////////////////////////////////
-    // MARK: - Functions
-
-    func formattedDate(date: String) -> String? {
-
-        let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-
-        if let date = dateFormatter.date(from: date) {
-
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd.MM.yy HH:mm"
-            return formatter.string(from: date)
-        }
-        return nil
+    
+    func formattedDateAsString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yy HH:mm"
+        return formatter.string(from: self)
     }
 }
