@@ -38,9 +38,9 @@ class TourCell: UITableViewCell, ViewBinding {
     var descriptionLabel: UILabel = UILabel().configure { label in
         label.numberOfLines = 0
     }
-
+    
     var availableLabel: UILabel = UILabel()
-
+    
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Life Cycle
     
@@ -135,7 +135,7 @@ class TourCell: UITableViewCell, ViewBinding {
         
         if let tour = model as? Tour {
             // image
-            if let url = URL(string: tour.thumbnail) {
+            if let url = tour.thumbnail {
                 self.thumbnail.af.setImage(withURL: url)
             }
             
@@ -143,13 +143,13 @@ class TourCell: UITableViewCell, ViewBinding {
             self.descriptionLabel.text = tour.shortDescription
             
             // price
-            if let price = NumberFormatter().formattedPrice(price: tour.price) {
-                self.priceLabel.text = "PRICE: \(price)"
+            if let price = tour.price {
+                self.priceLabel.text = "PRICE: \(String(format: "%.2f €", price))"
             }
             
             // end Date
-            if let date = Date().formattedDate(date: tour.endDate) {
-                self.availableLabel.text = date
+            if let date = tour.endDate {
+                self.availableLabel.text = date.formattedDateAsString()
             }
         }
     }

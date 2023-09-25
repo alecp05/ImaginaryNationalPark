@@ -161,14 +161,12 @@ class DetailViewController: ViewModelViewController<DetailViewModel> {
         self.titleLabel.text = tour.title
         self.descriptionLabel.text = tour.description
         
-        if let startDate = Date().formattedDate(date: tour.startDate),
-           let endDate = Date().formattedDate(date: tour.endDate) {
-            
-            self.availableLabel.text = "\(startDate) - \(endDate)"
+        if let startDate = tour.startDate, let endDate = tour.endDate {
+            self.availableLabel.text = "\(startDate.formattedDateAsString()) - \(endDate.formattedDateAsString())"
         }
         
-        if let image = tour.image , let url = URL(string: image) {
-            self.imageView.af.setImage(withURL: url)
+        if let image = tour.image {
+            self.imageView.af.setImage(withURL: image)
         }
     }
     
