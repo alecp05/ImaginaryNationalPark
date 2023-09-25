@@ -20,14 +20,14 @@ class ApiRepository {
     func getTours(service: Service, completed: @escaping ([Tour]) -> Void) {
         AF.request(service)
             .responseDecodable(of: [TourDTO].self) { response in
-            
-            switch response.result {
-            case .success(let tours):
-                completed(tours.map({ $0.toObject() }))
-            case .failure(let error):
-                print(error)
+                
+                switch response.result {
+                case .success(let tours):
+                    completed(tours.map({ $0.toDomain() }))
+                case .failure(let error):
+                    print(error)
+                }
             }
-        }
     }
     
     func getTourWithID(id: Int, completed: @escaping (Tour) -> Void) {
@@ -36,7 +36,7 @@ class ApiRepository {
                 
                 switch response.result {
                 case .success(let tour):
-                    completed(tour.toObject())
+                    completed(tour.toDomain())
                 case .failure(let error):
                     print(error)
                 }
@@ -49,7 +49,7 @@ class ApiRepository {
                 
                 switch response.result {
                 case .success(let contact):
-                    completed(contact.toObject())
+                    completed(contact.toDomain())
                 case .failure(let error):
                     print(error)
                 }
