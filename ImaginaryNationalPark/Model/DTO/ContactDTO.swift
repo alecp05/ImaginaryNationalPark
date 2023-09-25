@@ -31,7 +31,7 @@ extension ContactDTO {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Function
     
-    func toObject() -> Contact {
+    func toDomain() -> Contact {
         return Contact(companyName: self.companyName, street: self.street, country: self.country, phone: self.phone)
     }
 }

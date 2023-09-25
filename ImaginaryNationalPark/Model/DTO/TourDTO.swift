@@ -48,7 +48,16 @@ extension TourDTO {
     // /////////////////////////////////////////////////////////////////////////
     // MARK: - Function
     
-    func toObject() -> Tour {
-        return Tour(id: self.id, title: self.title, shortDescription: self.shortDescription, description: self.description, thumbnail: self.thumbnail, image: self.image, startDate: self.startDate, endDate: self.endDate, price: self.price)
+    func toDomain() -> Tour {
+        
+        return Tour(id: self.id,
+                    title: self.title,
+                    shortDescription: self.shortDescription,
+                    description: self.description,
+                    thumbnail: self.thumbnail.toURL(),
+                    image: self.image?.toURL(),
+                    startDate: self.startDate.formattedDate(),
+                    endDate: self.endDate.formattedDate(),
+                    price: Double(self.price))
     }
 }
